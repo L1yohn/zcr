@@ -1,0 +1,3267 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <meta name="description" content="种茶人 - 专注高端茶叶精深加工25年，为全球300+经销商提供优质茶叶，年产能5000吨，出口30+国家">
+  <meta name="keywords" content="茶叶批发,茶叶加工,茶叶出口,OEM定制,茶叶经销商">
+  <title>种茶人 - 高端茶叶精深加工</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+
+  <!-- CDN Libraries -->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+  <script src="https://unpkg.com/vue-router@4/dist/vue-router.global.prod.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <style>
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ CSS VARIABLES ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    :root {
+      --green-deep: #1a3c2a;
+      --green-mid: #2d5a3d;
+      --gold: #c8a44a;
+      --gold-light: #e8c97a;
+      --cream: #f5f0e8;
+      --cream-dark: #e8e0d0;
+      --text-dark: #1a1a18;
+      --text-muted: #6b6459;
+    }
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ GLOBAL RESET ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Noto Sans SC', sans-serif;
+      background: var(--cream);
+      color: var(--text-dark);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      position: relative;
+    }
+
+    body::before,
+    body::after {
+      content: '';
+      position: fixed;
+      width: 36vw;
+      height: 36vw;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: -1;
+      filter: blur(70px);
+      opacity: 0.22;
+      animation: ambientFloat 16s ease-in-out infinite;
+      will-change: transform;
+    }
+
+    body::before {
+      top: -10vw;
+      left: -8vw;
+      background: radial-gradient(circle, rgba(200, 164, 74, 0.8) 0%, rgba(200, 164, 74, 0) 70%);
+    }
+
+    body::after {
+      bottom: -12vw;
+      right: -10vw;
+      background: radial-gradient(circle, rgba(45, 90, 61, 0.72) 0%, rgba(45, 90, 61, 0) 72%);
+      animation-delay: -8s;
+    }
+
+    @keyframes ambientFloat {
+
+      0%,
+      100% {
+        transform: translate3d(0, 0, 0) scale(1);
+      }
+
+      50% {
+        transform: translate3d(0, -18px, 0) scale(1.06);
+      }
+    }
+
+    body.is-menu-open {
+      overflow: hidden;
+      touch-action: none;
+    }
+
+    @media (pointer: fine) {
+      body {
+        cursor: none;
+      }
+
+      a,
+      button,
+      input,
+      textarea,
+      select,
+      [role='button'],
+      .navbar,
+      .navbar * {
+        cursor: none !important;
+      }
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: 'Noto Serif SC', serif;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    button {
+      font-family: inherit;
+    }
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ CUSTOM CURSOR ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    .cursor-dot,
+    .cursor-outline {
+      display: none;
+    }
+
+    @media (pointer: fine) {
+
+      .cursor-dot,
+      .cursor-outline {
+        display: block;
+      }
+
+      .cursor-dot {
+        width: 20px;
+        height: 24px;
+        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M14 55C13 48 16 41 20 36C28 24 41 13 58 8C50 24 43 37 33 48C28 54 22 57 14 55Z' fill='%239bcc3a'/%3E%3Cpath d='M18 53C17 47 19 41 23 36C31 25 42 16 55 10C47 24 40 35 31 46C27 51 23 54 18 53Z' fill='%23c9e36a'/%3E%3Cpath d='M21 39C29 32 37 24 48 16' stroke='%237aa928' stroke-width='2.6' stroke-linecap='round'/%3E%3Cpath d='M14 55C15 59 15 62 17 63C19 64 21 63 20 61C18 58 18 56 18 53' fill='%236b9622'/%3E%3C/svg%3E") center/contain no-repeat;
+        position: fixed;
+        pointer-events: none;
+        z-index: 10000;
+        filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.35));
+        will-change: transform;
+      }
+
+      .cursor-outline {
+        width: 46px;
+        height: 54px;
+        border: none;
+        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 72 72'%3E%3Cpath d='M18 62C16 53 19 45 24 38C33 26 47 15 65 9C56 27 48 41 37 53C31 59 25 63 18 62Z' fill='%23b7da55' fill-opacity='0.42'/%3E%3Cpath d='M18 62C16 53 19 45 24 38C33 26 47 15 65 9C56 27 48 41 37 53C31 59 25 63 18 62Z' fill='none' stroke='%232f4d11' stroke-width='2.4'/%3E%3Cpath d='M26 45C35 38 44 29 56 20' stroke='%236b9622' stroke-width='2.4' stroke-linecap='round'/%3E%3Cpath d='M18 62C19 66 19 69 21 70C23 71 25 70 24 67C22 65 22 63 22 60' fill='%2361861e'/%3E%3C/svg%3E") center/contain no-repeat;
+        position: fixed;
+        pointer-events: none;
+        z-index: 9999;
+        filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.55));
+        transition: width 0.2s ease, height 0.2s ease;
+        will-change: transform;
+      }
+
+      .cursor-outline.hover {
+        width: 56px;
+        height: 66px;
+      }
+    }
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ NAVIGATION ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 1.5rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.4s ease;
+      background: rgba(26, 60, 42, 0.58);
+      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 2px 14px rgba(0, 0, 0, 0.12);
+      animation: slideDown 0.6s ease-out;
+    }
+
+    @keyframes slideDown {
+      from {
+        transform: translateY(-100%);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .navbar.scrolled {
+      background: rgba(26, 60, 42, 0.74);
+      -webkit-backdrop-filter: blur(14px);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.18);
+      padding: 1rem 5%;
+    }
+
+    .navbar-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: white;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+      animation: fadeInLeft 0.8s ease-out 0.2s both;
+    }
+
+    @keyframes fadeInLeft {
+      from {
+        transform: translateX(-30px);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    .navbar-logo svg {
+      transition: transform 0.3s ease;
+    }
+
+    .navbar-logo:hover svg {
+      transform: rotate(360deg);
+    }
+
+    .navbar-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .navbar-links li {
+      animation: fadeInDown 0.6s ease-out both;
+    }
+
+    .navbar-links li:nth-child(1) {
+      animation-delay: 0.3s;
+    }
+
+    .navbar-links li:nth-child(2) {
+      animation-delay: 0.4s;
+    }
+
+    .navbar-links li:nth-child(3) {
+      animation-delay: 0.5s;
+    }
+
+    .navbar-links li:nth-child(4) {
+      animation-delay: 0.6s;
+    }
+
+    .navbar-links li:nth-child(5) {
+      animation-delay: 0.7s;
+    }
+
+    @keyframes fadeInDown {
+      from {
+        transform: translateY(-20px);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .navbar-links a {
+      color: white;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      position: relative;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+      display: inline-block;
+    }
+
+    .navbar-links a::before {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 50%;
+      right: 50%;
+      height: 2px;
+      background: var(--gold);
+      transition: all 0.3s ease;
+    }
+
+    .navbar-links a:hover::before {
+      left: 0;
+      right: 0;
+    }
+
+    .navbar-links a:hover {
+      color: var(--gold-light);
+      transform: translateY(-2px);
+    }
+
+    .navbar-links a.router-link-active::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--gold);
+    }
+
+    .navbar-cta {
+      background: var(--gold);
+      color: var(--text-dark);
+      padding: 0.75rem 1.75rem;
+      border-radius: 4px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      animation: fadeInRight 0.8s ease-out 0.8s both;
+      position: relative;
+      overflow: hidden;
+    }
+
+    @keyframes fadeInRight {
+      from {
+        transform: translateX(30px);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    .navbar-cta::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: var(--gold-light);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s ease, height 0.6s ease;
+      z-index: 0;
+    }
+
+    .navbar-cta:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+
+    .navbar-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(200, 164, 74, 0.4);
+    }
+
+    /* Mobile Menu */
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      color: white;
+      padding: 0;
+      line-height: 1;
+      cursor: pointer;
+      z-index: 1001;
+      transition: all 0.3s ease;
+      border: none;
+      outline: none;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    .mobile-menu-btn-icon {
+      width: 24px;
+      height: 24px;
+      display: block;
+      pointer-events: none;
+    }
+
+    .mobile-menu-btn:active {
+      transform: scale(0.95);
+    }
+
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, var(--green-deep) 0%, #2d5a3d 100%);
+      z-index: 1001;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 1.5rem;
+      padding: 2rem;
+    }
+
+    .mobile-menu-fade-enter-active,
+    .mobile-menu-fade-leave-active {
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .mobile-menu-fade-enter-from,
+    .mobile-menu-fade-leave-to {
+      opacity: 0;
+      transform: scale(1.02);
+    }
+
+    .mobile-menu::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 15 Q25 25 30 35 Q35 25 30 15' stroke='rgba(200,164,74,0.1)' fill='none' stroke-width='2'/%3E%3C/svg%3E");
+      opacity: 0.3;
+    }
+
+    .mobile-menu a {
+      color: white;
+      font-size: 1.5rem;
+      font-weight: 500;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: slideInUp 0.4s ease forwards;
+      position: relative;
+      z-index: 1;
+      padding: 0.75rem 2rem;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      min-width: 200px;
+      text-align: center;
+    }
+
+    .mobile-menu a:hover,
+    .mobile-menu a:active {
+      background: rgba(200, 164, 74, 0.2);
+      transform: translateX(10px);
+    }
+
+    .mobile-menu a:nth-child(2) {
+      animation-delay: 0.1s;
+    }
+
+    .mobile-menu a:nth-child(3) {
+      animation-delay: 0.2s;
+    }
+
+    .mobile-menu a:nth-child(4) {
+      animation-delay: 0.3s;
+    }
+
+    .mobile-menu a:nth-child(5) {
+      animation-delay: 0.4s;
+    }
+
+    .mobile-menu a:nth-child(6) {
+      animation-delay: 0.5s;
+    }
+
+    @keyframes slideInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .mobile-menu-close {
+      position: fixed;
+      top: calc(env(safe-area-inset-top, 0px) + 0.75rem);
+      right: calc(env(safe-area-inset-right, 0px) + 0.75rem);
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      color: white;
+      font-size: 2rem;
+      cursor: pointer;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+      z-index: 2;
+      line-height: 1;
+    }
+
+    .mobile-menu-close:hover,
+    .mobile-menu-close:active {
+      background: rgba(200, 164, 74, 0.3);
+      transform: rotate(90deg) scale(0.95);
+    }
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ PAGE TRANSITION ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    .page-transition-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--green-deep);
+      z-index: 9998;
+      pointer-events: none;
+      clip-path: inset(0 100% 0 0);
+    }
+
+    .page-enter-active,
+    .page-leave-active {
+      transition: none;
+    }
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ HERO SECTION ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    .hero {
+      min-height: 100vh;
+      background: var(--green-deep);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      padding: 0 5%;
+    }
+
+    .hero-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(6px);
+      pointer-events: none;
+      mix-blend-mode: screen;
+      z-index: 1;
+      animation: heroOrbFloat 10s ease-in-out infinite;
+    }
+
+    .hero-orb-one {
+      width: 240px;
+      height: 240px;
+      background: radial-gradient(circle, rgba(200, 164, 74, 0.35) 0%, rgba(200, 164, 74, 0) 72%);
+      top: 12%;
+      left: 48%;
+    }
+
+    .hero-orb-two {
+      width: 190px;
+      height: 190px;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 70%);
+      top: 60%;
+      left: 62%;
+      animation-delay: -4s;
+    }
+
+    @keyframes heroOrbFloat {
+
+      0%,
+      100% {
+        transform: translate3d(0, 0, 0);
+      }
+
+      50% {
+        transform: translate3d(0, -16px, 0);
+      }
+    }
+
+    .hero-bg-pattern {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      opacity: 0.1;
+      pointer-events: none;
+    }
+
+    .hero-diagonal {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 45%;
+      height: 100%;
+      background: var(--cream);
+      clip-path: polygon(20% 0, 100% 0, 100% 100%, 0% 100%);
+    }
+
+    .hero-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-text {
+      color: white;
+      max-width: 600px;
+    }
+
+    .hero-subtitle {
+      font-size: 0.9rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 1rem;
+    }
+
+    .hero-title {
+      font-size: 4rem;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title span {
+      display: inline-block;
+    }
+
+    .hero-desc {
+      font-size: 1.1rem;
+      color: rgba(255, 255, 255, 0.85);
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+      padding: 1rem 2rem;
+      border-radius: 4px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: var(--text-dark);
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s ease, height 0.6s ease;
+    }
+
+    .btn-primary:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+
+    .btn-primary:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(200, 164, 74, 0.4);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: white;
+      border: 2px solid white;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .btn-secondary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: white;
+      transition: left 0.4s ease;
+      z-index: -1;
+    }
+
+    .btn-secondary:hover::before {
+      left: 0;
+    }
+
+    .btn-secondary:hover {
+      color: var(--green-deep);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 255, 255, 0.3);
+    }
+
+    .btn-primary:focus-visible,
+    .btn-secondary:focus-visible,
+    .product-cta:focus-visible,
+    .navbar-cta:focus-visible,
+    .filter-tab:focus-visible,
+    .mobile-menu-btn:focus-visible,
+    .mobile-menu-close:focus-visible {
+      outline: 2px solid var(--gold-light);
+      outline-offset: 3px;
+    }
+
+    .hero-stats {
+      background: white;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    }
+
+    .hero-stat {
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-stat:last-child {
+      margin-bottom: 0;
+    }
+
+    .hero-stat-number {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--green-deep);
+      font-family: 'Noto Serif SC', serif;
+    }
+
+    .hero-stat-label {
+      font-size: 0.9rem;
+      color: #5a5248;
+      font-weight: 500;
+    }
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ SECTIONS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    .section {
+      padding: 6rem 5%;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 3rem;
+      color: var(--green-deep);
+      position: relative;
+      display: inline-block;
+      width: 100%;
+      letter-spacing: 0.3px;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background: var(--gold);
+      animation: expandWidth 0.8s ease-out 0.3s both;
+    }
+
+    @keyframes expandWidth {
+      from {
+        width: 0;
+      }
+
+      to {
+        width: 60px;
+      }
+    }
+
+    /* Stats Section */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 3rem;
+      text-align: center;
+    }
+
+    .stat-item {
+      padding: 2rem;
+      animation: scaleIn 0.6s ease-out both;
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+      border-radius: 8px;
+    }
+
+    .stat-item:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 28px rgba(26, 60, 42, 0.12);
+    }
+
+    .stat-item:nth-child(1) {
+      animation-delay: 0.1s;
+    }
+
+    .stat-item:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .stat-item:nth-child(3) {
+      animation-delay: 0.3s;
+    }
+
+    .stat-item:nth-child(4) {
+      animation-delay: 0.4s;
+    }
+
+    @keyframes scaleIn {
+      from {
+        transform: scale(0.8);
+        opacity: 0;
+      }
+
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .stat-number {
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--gold);
+      font-family: 'Noto Serif SC', serif;
+      margin-bottom: 0.5rem;
+      transition: transform 0.3s ease;
+    }
+
+    .stat-item:hover .stat-number {
+      transform: scale(1.1);
+      color: var(--gold-light);
+    }
+
+    .stat-label {
+      font-size: 1rem;
+      color: var(--text-dark);
+      font-weight: 500;
+    }
+
+    /* Products Preview */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .product-card {
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+      position: relative;
+      transform-origin: center;
+      will-change: transform;
+    }
+
+    .product-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -120%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(120deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.42) 50%, rgba(255, 255, 255, 0) 100%);
+      transform: skewX(-18deg);
+      transition: left 0.6s ease;
+      pointer-events: none;
+    }
+
+    .product-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+      border-color: var(--gold);
+    }
+
+    .product-card:hover::after {
+      left: 130%;
+    }
+
+    .product-image {
+      width: 100%;
+      height: 280px;
+      background: var(--cream-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .product-image svg {
+      transition: transform 0.4s ease;
+    }
+
+    .product-card:hover .product-image svg {
+      transform: scale(1.1) rotate(5deg);
+    }
+
+    .product-info {
+      padding: 1.5rem;
+    }
+
+    .product-name {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--green-deep);
+    }
+
+    .product-name-en {
+      font-size: 0.85rem;
+      color: #5a5248;
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+
+    .product-tags {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+
+    .product-tag {
+      background: var(--cream);
+      padding: 0.25rem 0.75rem;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      color: var(--green-deep);
+      font-weight: 500;
+      border: 1px solid var(--cream-dark);
+    }
+
+    .product-cta {
+      width: 100%;
+      padding: 0.75rem;
+      background: var(--green-deep);
+      color: white;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+    }
+
+    .product-cta:hover {
+      background: var(--gold);
+      color: var(--text-dark);
+    }
+
+    /* CTA Banner */
+    .cta-banner {
+      background: var(--green-deep);
+      color: white;
+      padding: 3rem;
+      border-radius: 8px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-banner::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(200, 164, 74, 0.1) 0%, transparent 70%);
+      animation: pulse 3s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+
+      50% {
+        transform: scale(1.1);
+        opacity: 0.8;
+      }
+    }
+
+    .cta-banner h3 {
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-banner .btn-primary {
+      opacity: 1;
+      position: relative;
+      z-index: 1;
+      animation: bounce 2s ease-in-out infinite;
+    }
+
+    @keyframes bounce {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-5px);
+      }
+    }
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ABOUT PAGE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    .about-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      margin-bottom: 4rem;
+      align-items: center;
+    }
+
+    .about-section:nth-child(even) {
+      direction: rtl;
+    }
+
+    .about-section:nth-child(even)>* {
+      direction: ltr;
+    }
+
+    .about-image {
+      width: 100%;
+      height: 400px;
+      background: var(--cream-dark);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .about-text h3 {
+      font-size: 1.8rem;
+      color: var(--green-deep);
+      margin-bottom: 1rem;
+    }
+
+    .about-text p {
+      line-height: 1.8;
+      color: var(--text-dark);
+      margin-bottom: 1rem;
+      font-weight: 400;
+    }
+
+    /* Timeline */
+    .timeline {
+      position: relative;
+      padding: 4rem 0;
+    }
+
+    .timeline-line {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--gold);
+    }
+
+    .timeline-items {
+      display: flex;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    .timeline-item {
+      text-align: center;
+      flex: 1;
+    }
+
+    .timeline-dot {
+      width: 20px;
+      height: 20px;
+      background: var(--gold);
+      border-radius: 50%;
+      margin: 0 auto 1rem;
+      border: 4px solid var(--cream);
+    }
+
+    .timeline-year {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--green-deep);
+      margin-bottom: 0.5rem;
+    }
+
+    .timeline-desc {
+      font-size: 0.9rem;
+      color: var(--text-dark);
+      font-weight: 500;
+    }
+
+    .mission-quote {
+      background: var(--cream-dark);
+      padding: 3rem;
+      border-left: 4px solid var(--gold);
+      border-radius: 4px;
+      font-size: 1.3rem;
+      font-style: italic;
+      color: var(--green-deep);
+      text-align: center;
+      margin-top: 4rem;
+    }
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ PRODUCTS PAGE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    .filter-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-tab {
+      padding: 0.75rem 1.5rem;
+      background: white;
+      border: 2px solid var(--cream-dark);
+      border-radius: 4px;
+      transition: all 0.3s ease;
+      font-weight: 500;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .filter-tab::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: var(--green-deep);
+      transition: left 0.3s ease;
+      z-index: -1;
+    }
+
+    .filter-tab:hover::before {
+      left: 0;
+    }
+
+    .filter-tab:hover {
+      border-color: var(--green-deep);
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    .filter-tab.active {
+      background: var(--green-deep);
+      color: white;
+      border-color: var(--green-deep);
+      transform: scale(1.05);
+    }
+
+    .products-grid-full {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .product-specs {
+      font-size: 0.85rem;
+      color: var(--text-dark);
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+
+    .custom-banner {
+      background: linear-gradient(135deg, var(--green-deep), var(--green-mid));
+      color: white;
+      padding: 3rem;
+      border-radius: 8px;
+      text-align: center;
+      margin-top: 4rem;
+    }
+
+    .custom-banner h3 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .custom-banner p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ PROCESS PAGE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    .process-timeline {
+      position: relative;
+      padding: 2rem 0;
+    }
+
+    .process-step {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      margin-bottom: 4rem;
+      align-items: center;
+    }
+
+    .process-step:nth-child(even) {
+      direction: rtl;
+    }
+
+    .process-step:nth-child(even)>* {
+      direction: ltr;
+    }
+
+    .process-image {
+      width: 100%;
+      height: 350px;
+      background: var(--cream-dark);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .process-content h3 {
+      font-size: 1.8rem;
+      color: var(--green-deep);
+      margin-bottom: 1rem;
+    }
+
+    .process-number {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      background: var(--gold);
+      color: white;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 40px;
+      font-weight: 700;
+      margin-right: 1rem;
+    }
+
+    .process-content p {
+      line-height: 1.8;
+      color: var(--text-dark);
+      font-weight: 400;
+    }
+
+    .traceability-section {
+      background: var(--cream-dark);
+      padding: 4rem;
+      border-radius: 8px;
+      text-align: center;
+      margin: 4rem 0;
+    }
+
+    .traceability-section h3 {
+      font-size: 2rem;
+      color: var(--green-deep);
+      margin-bottom: 2rem;
+    }
+
+    .phone-mockup {
+      width: 300px;
+      height: 500px;
+      background: white;
+      border-radius: 30px;
+      margin: 2rem auto;
+      padding: 2rem;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .certifications {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      margin-top: 4rem;
+    }
+
+    .cert-item {
+      background: white;
+      padding: 2rem;
+      border-radius: 8px;
+      text-align: center;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+      cursor: pointer;
+    }
+
+    .cert-item:hover {
+      transform: translateY(-8px) scale(1.05);
+      border-color: var(--gold);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .cert-icon {
+      width: 80px;
+      height: 80px;
+      background: var(--cream);
+      border-radius: 50%;
+      margin: 0 auto 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      transition: all 0.4s ease;
+    }
+
+    .cert-item:hover .cert-icon {
+      background: var(--gold);
+      transform: rotateY(360deg);
+    }
+
+    .cert-name {
+      font-weight: 600;
+      color: var(--green-deep);
+      font-size: 1rem;
+    }
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ CONTACT PAGE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    .contact-wrapper {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .contact-info-section h3 {
+      font-size: 1.8rem;
+      color: var(--green-deep);
+      margin-bottom: 2rem;
+    }
+
+    .contact-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .contact-card {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 8px;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+      transition: all 0.3s ease;
+    }
+
+    .contact-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    }
+
+    .contact-card-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--cream);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--green-deep);
+      flex-shrink: 0;
+    }
+
+    .contact-card-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .contact-card-label {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 0.25rem;
+      font-weight: 500;
+    }
+
+    .contact-card-value {
+      font-size: 0.95rem;
+      color: var(--text-dark);
+      font-weight: 500;
+      word-break: break-word;
+    }
+
+    .contact-hours {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.25rem 1.5rem;
+      background: linear-gradient(135deg, var(--green-deep), var(--green-mid));
+      border-radius: 8px;
+      color: white;
+      margin-bottom: 2rem;
+    }
+
+    .contact-hours-icon {
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .contact-hours-text {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .contact-hours-text span {
+      font-size: 0.85rem;
+      opacity: 0.85;
+    }
+
+    .contact-hours-text strong {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .map-container {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      background: var(--cream-dark);
+    }
+
+    .map-iframe {
+      width: 100%;
+      height: 250px;
+      border: 0;
+      display: block;
+    }
+
+    .map-nav-btn {
+      position: absolute;
+      left: 50%;
+      bottom: 1rem;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, #0f5c35 0%, #1a3c2a 100%);
+      color: white;
+      padding: 0.65rem 1rem;
+      border-radius: 14px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: all 0.25s ease;
+      box-shadow: 0 8px 20px rgba(12, 38, 28, 0.35);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      text-decoration: none;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      max-width: calc(100% - 1.5rem);
+      animation: navBtnPulse 2.4s ease-in-out infinite;
+    }
+
+    .map-nav-btn::before {
+      content: '';
+      width: 0.8rem;
+      height: 0.8rem;
+      border-radius: 50%;
+      background: #37d86f;
+      box-shadow: 0 0 0 0 rgba(55, 216, 111, 0.55);
+      animation: navDotPulse 2.2s ease-out infinite;
+      flex-shrink: 0;
+    }
+
+    .map-nav-btn-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+    }
+
+    .map-nav-btn-title {
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+    }
+
+    .map-nav-btn-sub {
+      font-size: 0.72rem;
+      opacity: 0.88;
+    }
+
+    .map-nav-btn:hover {
+      background: linear-gradient(135deg, #167146 0%, #1f4e35 100%);
+      transform: translateX(-50%) translateY(-2px);
+      box-shadow: 0 10px 24px rgba(12, 38, 28, 0.45);
+    }
+
+    @keyframes navBtnPulse {
+
+      0%,
+      100% {
+        box-shadow: 0 8px 20px rgba(12, 38, 28, 0.35);
+      }
+
+      50% {
+        box-shadow: 0 10px 26px rgba(12, 38, 28, 0.48);
+      }
+    }
+
+    @keyframes navDotPulse {
+
+      0% {
+        box-shadow: 0 0 0 0 rgba(55, 216, 111, 0.5);
+      }
+
+      70% {
+        box-shadow: 0 0 0 10px rgba(55, 216, 111, 0);
+      }
+
+      100% {
+        box-shadow: 0 0 0 0 rgba(55, 216, 111, 0);
+      }
+    }
+
+    .contact-container {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 4rem;
+    }
+
+    .form-success {
+      text-align: center;
+      padding: 3rem;
+    }
+
+    .success-icon {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 1.5rem;
+    }
+
+    .success-icon svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ FOOTER ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    .footer {
+      background: var(--green-deep);
+      color: white;
+      padding: 4rem 5% 2rem;
+    }
+
+    .footer-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 4rem;
+      margin-bottom: 3rem;
+    }
+
+    .footer-section h4 {
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+      color: var(--gold);
+    }
+
+    .footer-section p,
+    .footer-section a {
+      color: rgba(255, 255, 255, 0.9);
+      line-height: 1.8;
+      display: block;
+      margin-bottom: 0.5rem;
+      transition: color 0.3s ease;
+    }
+
+    .footer-section a:hover {
+      color: var(--gold-light);
+    }
+
+    .footer-bottom {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      text-align: center;
+      color: rgba(255, 255, 255, 0.75);
+      font-size: 0.9rem;
+    }
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ RESPONSIVE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    @media (max-width: 1024px) {
+      .hero-title {
+        font-size: 3rem;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .products-grid,
+      .products-grid-full {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .about-section,
+      .process-step,
+      .contact-wrapper {
+        grid-template-columns: 1fr;
+      }
+
+      .certifications {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .contact-wrapper {
+        gap: 2rem;
+      }
+
+      .contact-cards {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .section {
+        padding: 4rem 5%;
+      }
+
+      .hero-diagonal {
+        width: 60%;
+      }
+    }
+
+    @media (max-width: 768px) {
+
+      body::before,
+      body::after {
+        display: none;
+      }
+
+      /* Navigation - 优化移动端导航 */
+      .navbar {
+        padding: 1rem 4%;
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        z-index: 1000;
+        box-sizing: border-box;
+      }
+
+      .navbar.scrolled {
+        padding: 0.75rem 4%;
+      }
+
+      .navbar-links {
+        display: none;
+      }
+
+      .mobile-menu-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        min-width: 44px;
+        min-height: 44px;
+        flex-shrink: 0;
+        padding: 0;
+        background: rgba(200, 164, 74, 0.15);
+        border-radius: 6px;
+        border: 1px solid rgba(200, 164, 74, 0.5);
+        position: relative;
+        z-index: 1002;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .mobile-menu-btn:hover {
+        background: rgba(200, 164, 74, 0.25);
+        border-color: rgba(200, 164, 74, 0.7);
+      }
+
+      .mobile-menu-btn:active {
+        transform: scale(0.95);
+        background: rgba(200, 164, 74, 0.3);
+      }
+
+      .mobile-menu-btn-icon {
+        width: 24px;
+        height: 24px;
+        display: block;
+        pointer-events: none;
+      }
+
+      .navbar-logo {
+        font-size: 1.2rem;
+        flex-shrink: 0;
+        position: relative;
+        z-index: 1002;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .navbar-logo svg {
+        width: 32px;
+        height: 32px;
+        flex-shrink: 0;
+      }
+
+      .navbar-cta {
+        display: none;
+      }
+
+      /* Hero - 移动端优化 */
+      .hero {
+        min-height: 100vh;
+        padding: 7rem 4% 4rem;
+        background: linear-gradient(135deg, var(--green-deep) 0%, #2d5a3d 100%);
+      }
+
+      .hero-bg-pattern {
+        display: none;
+      }
+
+      .hero-orb {
+        display: none;
+      }
+
+      .hero-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 3rem;
+      }
+
+      .hero-text {
+        max-width: 100%;
+      }
+
+      .hero-title {
+        font-size: 2.5rem;
+        line-height: 1.3;
+        margin-bottom: 1.5rem;
+      }
+
+      .hero-subtitle {
+        font-size: 0.75rem;
+        letter-spacing: 2px;
+        margin-bottom: 1.5rem;
+      }
+
+      .hero-desc {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+      }
+
+      .hero-ctas {
+        flex-direction: column;
+        width: 100%;
+        gap: 1rem;
+      }
+
+      .hero-ctas button {
+        width: 100%;
+        padding: 1rem 2rem;
+        font-size: 1rem;
+      }
+
+      .hero-stats {
+        max-width: 100%;
+        padding: 1.5rem;
+      }
+
+      .hero-stat {
+        margin-bottom: 1.25rem;
+      }
+
+      .hero-stat-number {
+        font-size: 2rem;
+      }
+
+      .hero-diagonal {
+        display: none;
+      }
+
+      /* Sections - 移动端间距优化 */
+      .section {
+        padding: 3rem 4%;
+      }
+
+      .section-title {
+        font-size: 2rem;
+        margin-bottom: 2.5rem;
+        padding-bottom: 1rem;
+      }
+
+      /* Stats - 移动端网格 */
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+      }
+
+      .stat-item {
+        padding: 1.5rem 1rem;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      }
+
+      .stat-number {
+        font-size: 2.5rem;
+      }
+
+      .stat-label {
+        font-size: 0.9rem;
+      }
+
+      /* Products - 移动端优化 */
+      .products-grid,
+      .products-grid-full {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .product-card {
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+      }
+
+      .product-image {
+        height: 240px;
+      }
+
+      .filter-tabs {
+        gap: 0.75rem;
+        justify-content: center;
+      }
+
+      .filter-tab {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+        flex: 1;
+        min-width: auto;
+      }
+
+      /* About - 移动端布局 */
+      .about-section {
+        gap: 2rem;
+        margin-bottom: 3rem;
+      }
+
+      .about-image {
+        height: 280px;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .about-text h3 {
+        font-size: 1.6rem;
+        margin-bottom: 1rem;
+      }
+
+      .about-text p {
+        font-size: 0.95rem;
+        line-height: 1.7;
+      }
+
+      .timeline-items {
+        flex-direction: column;
+        gap: 2rem;
+      }
+
+      .timeline-line {
+        display: none;
+      }
+
+      .timeline-item {
+        background: white;
+        padding: 1.5rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      }
+
+      .mission-quote {
+        padding: 2rem;
+        font-size: 1.1rem;
+        border-radius: 8px;
+      }
+
+      /* Process - 移动端优化 */
+      .process-step {
+        gap: 2rem;
+        margin-bottom: 2.5rem;
+        background: white;
+        padding: 1.5rem;
+        border-radius: 12px;
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+      }
+
+      .process-image {
+        height: 220px;
+        border-radius: 8px;
+      }
+
+      .process-content h3 {
+        font-size: 1.4rem;
+        margin-bottom: 1rem;
+      }
+
+      .process-content p {
+        font-size: 0.95rem;
+        line-height: 1.7;
+      }
+
+      .traceability-section {
+        padding: 2.5rem 1.5rem;
+        border-radius: 12px;
+      }
+
+      .traceability-section h3 {
+        font-size: 1.6rem;
+      }
+
+      .phone-mockup {
+        width: 250px;
+        height: 450px;
+      }
+
+      .certifications {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+      }
+
+      .cert-item {
+        padding: 1.5rem 1rem;
+      }
+
+      .cert-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+      }
+
+      .cert-name {
+        font-size: 0.9rem;
+      }
+
+      /* Contact - 移动端优化 */
+      .contact-wrapper {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .contact-info-section h3 {
+        font-size: 1.6rem;
+      }
+
+      .contact-cards {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .contact-card {
+        padding: 1.25rem;
+      }
+
+      .contact-hours {
+        padding: 1rem 1.25rem;
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .contact-hours-text {
+        align-items: center;
+      }
+
+      .map-container {
+        border-radius: 8px;
+      }
+
+      .map-iframe {
+        height: 200px;
+      }
+
+      .map-nav-btn {
+        font-size: 0.8rem;
+        bottom: 0.75rem;
+        padding: 0.45rem 0.7rem;
+        border-radius: 12px;
+      }
+
+      .map-nav-btn-title {
+        font-size: 0.82rem;
+      }
+
+      .map-nav-btn-sub {
+        font-size: 0.66rem;
+      }
+
+      /* Footer - 移动端优化 */
+      .footer {
+        padding: 3rem 4% 2rem;
+      }
+
+      .footer-content {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+        text-align: center;
+      }
+
+      .footer-section h4 {
+        font-size: 1.1rem;
+        margin-bottom: 1rem;
+      }
+
+      /* CTA Banner - 移动端优化 */
+      .cta-banner,
+      .custom-banner {
+        padding: 2rem 1.5rem;
+        border-radius: 12px;
+      }
+
+      .cta-banner h3,
+      .custom-banner h3 {
+        font-size: 1.4rem;
+        line-height: 1.4;
+      }
+
+      .cta-banner p,
+      .custom-banner p {
+        font-size: 0.95rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+
+      /* Extra small screens - 进一步优化 */
+      .navbar {
+        padding: 0.75rem 3%;
+      }
+
+      .navbar-logo {
+        font-size: 1rem;
+      }
+
+      .navbar-logo svg {
+        width: 28px;
+        height: 28px;
+      }
+
+      .navbar-cta {
+        display: none;
+      }
+
+      .hero {
+        padding: 6rem 3% 3rem;
+      }
+
+      .hero-title {
+        font-size: 2rem;
+      }
+
+      .hero-subtitle {
+        font-size: 0.7rem;
+      }
+
+      .hero-stat-number {
+        font-size: 1.8rem;
+      }
+
+      .hero-desc {
+        font-size: 0.95rem;
+      }
+
+      .section {
+        padding: 2.5rem 3%;
+      }
+
+      .section-title {
+        font-size: 1.75rem;
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .stat-item {
+        padding: 1.25rem;
+      }
+
+      .stat-number {
+        font-size: 2.5rem;
+      }
+
+      .filter-tabs {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .filter-tab {
+        width: 100%;
+        text-align: center;
+      }
+
+      .certifications {
+        grid-template-columns: 1fr;
+      }
+
+
+
+      .footer {
+        padding: 2.5rem 3% 1.5rem;
+      }
+
+      .cta-banner h3,
+      .custom-banner h3 {
+        font-size: 1.25rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+
+      body::before,
+      body::after,
+      .hero-orb {
+        animation: none !important;
+      }
+    }
+
+    /* Touch device optimizations */
+    @media (hover: none) and (pointer: coarse) {
+
+      /* Larger touch targets */
+      .navbar-cta,
+      .btn-primary,
+      .btn-secondary,
+      .product-cta,
+      .form-submit {
+        min-height: 48px;
+        font-size: 1rem;
+      }
+
+      .filter-tab {
+        min-height: 48px;
+        padding: 0.75rem 1rem;
+      }
+
+      /* Remove hover effects on touch devices */
+      .product-card:hover {
+        transform: none;
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+      }
+
+      .cert-item:hover {
+        transform: none;
+      }
+
+      .navbar-links a:hover {
+        transform: none;
+      }
+
+      .cta-banner::before,
+      .cta-banner .btn-primary,
+      .map-nav-btn,
+      .map-nav-btn::before,
+      .navbar,
+      .navbar-logo,
+      .navbar-links li {
+        animation: none;
+      }
+
+      /* Enhance tap feedback */
+      .btn-primary:active,
+      .btn-secondary:active,
+      .product-cta:active,
+      .form-submit:active {
+        transform: scale(0.98);
+      }
+    }
+
+    /* Landscape mobile */
+    @media (max-width: 768px) and (orientation: landscape) {
+      .hero {
+        min-height: auto;
+        padding: 5rem 4% 3rem;
+      }
+
+      .hero-title {
+        font-size: 2rem;
+      }
+
+      .hero-stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+      }
+
+      .hero-stat {
+        margin-bottom: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <!-- Custom Cursor -->
+    <div class="cursor-dot" ref="cursorDot"></div>
+    <div class="cursor-outline" ref="cursorOutline"></div>
+
+    <!-- Page Transition Overlay -->
+    <div class="page-transition-overlay" ref="transitionOverlay"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar" :class="{ scrolled: isScrolled }">
+      <div class="navbar-logo">
+        <svg width="40" height="40" viewBox="0 0 40 40">
+          <path d="M20 5 Q15 15 20 25 Q25 15 20 5 M10 15 Q15 20 20 25 M30 15 Q25 20 20 25" stroke="currentColor"
+            fill="none" stroke-width="2" />
+        </svg>
+        <span>种茶人</span>
+      </div>
+
+      <ul class="navbar-links">
+        <li><router-link to="/">首页</router-link></li>
+        <li><router-link to="/about">品牌故事</router-link></li>
+        <li><router-link to="/products">产品中心</router-link></li>
+        <li><router-link to="/process">生产工艺</router-link></li>
+        <li><router-link to="/contact">联系我们</router-link></li>
+      </ul>
+
+      <button class="navbar-cta" @click="scrollToContact">联系我们</button>
+      <button class="mobile-menu-btn" @click="toggleMobileMenu" aria-label="打开菜单">
+        <svg class="mobile-menu-btn-icon" viewBox="0 0 20 20" aria-hidden="true">
+          <path d="M3 5.5 H17 M3 10 H17 M3 14.5 H17" stroke="white" stroke-width="2" stroke-linecap="round"
+            fill="none" />
+        </svg>
+      </button>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <transition name="mobile-menu-fade">
+      <div v-if="mobileMenuOpen" class="mobile-menu" @click.self="toggleMobileMenu">
+        <button class="mobile-menu-close" @click="toggleMobileMenu">✕</button>
+        <router-link to="/" @click="toggleMobileMenu">首页</router-link>
+        <router-link to="/about" @click="toggleMobileMenu">品牌故事</router-link>
+        <router-link to="/products" @click="toggleMobileMenu">产品中心</router-link>
+        <router-link to="/process" @click="toggleMobileMenu">生产工艺</router-link>
+        <router-link to="/contact" @click="toggleMobileMenu">联系我们</router-link>
+      </div>
+    </transition>
+
+    <!-- Router View -->
+    <router-view v-slot="{ Component }">
+      <transition name="page" mode="out-in" @leave="onLeave" @enter="onEnter" @after-enter="onAfterEnter">
+        <component :is="Component" :key="$route.path" />
+      </transition>
+    </router-view>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>种茶人</h4>
+          <p>专注高端茶叶精深加工25年</p>
+          <p>为全球300+经销商提供优质茶叶</p>
+          <p>年产能5000吨，出口30+国家</p>
+        </div>
+
+        <div class="footer-section">
+          <h4>快速链接</h4>
+          <router-link to="/about">品牌故事</router-link>
+          <router-link to="/products">产品中心</router-link>
+          <router-link to="/process">生产工艺</router-link>
+          <router-link to="/contact">联系我们</router-link>
+        </div>
+
+        <div class="footer-section">
+          <h4>联系方式</h4>
+          <p>电话：+86 400-888-8888</p>
+          <p>邮箱：info@zhongcharen.com</p>
+          <p>企业微信：+86 138-0000-0000</p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2024 种茶人 版权所有 | ICP备案号：粤ICP备12345678号</p>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    const { createApp, ref, onMounted, onUnmounted, watch, nextTick } = Vue;
+    const { createRouter, createWebHashHistory } = VueRouter;
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ COMPONENT: Home ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    const Home = {
+      template: `
+    <div>
+      <!-- Hero Section -->
+      <section class="hero">
+        <svg class="hero-bg-pattern" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg">
+          <path d="M100,200 Q200,100 300,200 T500,200" stroke="white" fill="none" stroke-width="2"/>
+          <path d="M200,400 Q300,300 400,400 T600,400" stroke="white" fill="none" stroke-width="2"/>
+          <path d="M150,600 Q250,500 350,600 T550,600" stroke="white" fill="none" stroke-width="2"/>
+        </svg>
+        <div class="hero-diagonal"></div>
+        <div class="hero-orb hero-orb-one" aria-hidden="true"></div>
+        <div class="hero-orb hero-orb-two" aria-hidden="true"></div>
+        
+        <div class="hero-content">
+          <div class="hero-text">
+            <div class="hero-subtitle">ZHONGCHAREN PREMIUM TEA</div>
+            <h1 class="hero-title">
+              <span>源</span><span>于</span><span>高</span><span>山</span><br>
+              <span>精</span><span>于</span><span>工</span><span>艺</span>
+            </h1>
+            <p class="hero-desc">Premium Tea Processing · Trusted by 300+ Global Partners</p>
+            <div class="hero-ctas">
+              <button class="btn-primary" @click="$router.push('/products')">查看产品目录</button>
+              <button class="btn-secondary" @click="$router.push('/contact')">预约工厂参观</button>
+            </div>
+          </div>
+          
+          <div class="hero-stats">
+            <div class="hero-stat">
+              <div class="hero-stat-number">5000+</div>
+              <div class="hero-stat-label">年产能（吨）</div>
+            </div>
+            <div class="hero-stat">
+              <div class="hero-stat-number">300+</div>
+              <div class="hero-stat-label">合作经销商</div>
+            </div>
+            <div class="hero-stat">
+              <div class="hero-stat-number">30+</div>
+              <div class="hero-stat-label">出口国家</div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Stats Section -->
+      <section class="section">
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="stat-number" data-target="25">0</div>
+            <div class="stat-label">年行业经验</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number" data-target="5000">0</div>
+            <div class="stat-label">年产能（吨）</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number" data-target="300">0</div>
+            <div class="stat-label">合作经销商</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number" data-target="30">0</div>
+            <div class="stat-label">出口国家</div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Products Preview -->
+      <section class="section">
+        <h2 class="section-title">精选产品</h2>
+        <div class="products-grid">
+          <div class="product-card" v-for="product in featuredProducts" :key="product.id">
+            <div class="product-image">
+              <svg width="120" height="120" viewBox="0 0 120 120">
+                <circle cx="60" cy="60" r="50" :fill="product.color" opacity="0.3"/>
+                <path d="M60 30 Q50 45 60 60 Q70 45 60 30 M40 45 Q50 52 60 60 M80 45 Q70 52 60 60" 
+                      :stroke="product.color" fill="none" stroke-width="3"/>
+              </svg>
+            </div>
+            <div class="product-info">
+              <div class="product-name">{{ product.name }}</div>
+              <div class="product-name-en">{{ product.nameEn }}</div>
+              <div class="product-tags">
+                <span class="product-tag" v-for="tag in product.tags" :key="tag">{{ tag }}</span>
+              </div>
+              <button class="product-cta" @click="$router.push('/contact')">联系我们</button>
+            </div>
+          </div>
+        </div>
+        <div style="text-align: center; margin-top: 2rem;">
+          <button class="btn-primary" @click="$router.push('/products')">查看全部产品</button>
+        </div>
+      </section>
+      
+      <!-- CTA Banner -->
+      <section class="section">
+        <div class="cta-banner">
+          <h3>支持 OEM 定制 · 最小起订量灵活</h3>
+          <button class="btn-primary" @click="$router.push('/contact')">联系我们</button>
+        </div>
+      </section>
+    </div>
+  `,
+      setup() {
+        const featuredProducts = [
+          { id: 1, name: '明前龙井', nameEn: 'Pre-Qingming Longjing', tags: ['散装', 'OEM可选'], color: '#2d5a3d' },
+          { id: 2, name: '滇红金芽', nameEn: 'Yunnan Golden Bud', tags: ['袋泡', '礼盒'], color: '#c8a44a' },
+          { id: 3, name: '铁观音', nameEn: 'Tieguanyin Oolong', tags: ['散装', 'OEM可选'], color: '#1a3c2a' }
+        ];
+
+        const shouldReduceMotion = window.matchMedia('(max-width: 768px), (prefers-reduced-motion: reduce)').matches;
+
+        onMounted(() => {
+          // Delay setup to ensure route content is rendered
+          setTimeout(() => {
+            if (shouldReduceMotion) {
+              gsap.set('.hero-subtitle, .hero-title span, .hero-desc, .hero-ctas button, .hero-stats', {
+                clearProps: 'all',
+                opacity: 1
+              });
+            } else {
+              animateHero();
+            }
+
+            setupStatsCounter();
+          }, 100);
+        });
+
+        return { featuredProducts };
+      }
+    };
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ COMPONENT: About ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    const About = {
+      template: `
+    <div class="section" style="padding-top: 8rem;">
+      <h2 class="section-title">品牌故事</h2>
+      
+      <div class="about-section">
+        <div class="about-image">
+          <svg width="200" height="200" viewBox="0 0 200 200">
+            <rect width="200" height="200" fill="#e8e0d0" rx="8"/>
+            <path d="M100 60 Q80 90 100 120 Q120 90 100 60 M60 90 Q80 105 100 120 M140 90 Q120 105 100 120" 
+                  stroke="#1a3c2a" fill="none" stroke-width="4"/>
+            <text x="100" y="170" text-anchor="middle" font-size="16" fill="#6b6459">1998</text>
+          </svg>
+        </div>
+        <div class="about-text">
+          <h3>创立初心</h3>
+          <p>1998年，种茶人创立于中国茶叶核心产区。创始人深耕茶行业多年，深知优质茶叶对于经销商的重要性。我们致力于为B端客户提供稳定、高品质的茶叶产品。</p>
+          <p>从最初的小型加工厂，到如今年产能5000吨的现代化工厂，我们始终坚持"品质第一，客户至上"的经营理念。</p>
+        </div>
+      </div>
+      
+      <div class="about-section">
+        <div class="about-image">
+          <svg width="200" height="200" viewBox="0 0 200 200">
+            <rect width="200" height="200" fill="#e8e0d0" rx="8"/>
+            <circle cx="100" cy="100" r="60" stroke="#c8a44a" fill="none" stroke-width="3"/>
+            <path d="M70 100 L90 120 L130 80" stroke="#c8a44a" fill="none" stroke-width="4"/>
+          </svg>
+        </div>
+        <div class="about-text">
+          <h3>品质保证</h3>
+          <p>我们拥有完整的质量管理体系，通过了ISO 22000、有机认证等多项国际认证。每一批茶叶都经过严格的品检流程，确保符合国际标准。</p>
+          <p>先进的生产设备和经验丰富的技术团队，让我们能够为客户提供稳定、可靠的产品供应。</p>
+        </div>
+      </div>
+      
+      <div class="about-section">
+        <div class="about-image">
+          <svg width="200" height="200" viewBox="0 0 200 200">
+            <rect width="200" height="200" fill="#e8e0d0" rx="8"/>
+            <circle cx="100" cy="100" r="50" fill="#2d5a3d" opacity="0.3"/>
+            <path d="M60 100 L100 60 L140 100 L100 140 Z" stroke="#2d5a3d" fill="none" stroke-width="3"/>
+          </svg>
+        </div>
+        <div class="about-text">
+          <h3>全球合作</h3>
+          <p>目前，我们已与全球300多家批发商、经销商建立了长期合作关系，产品出口至欧洲、北美、东南亚等30多个国家和地区。</p>
+          <p>我们提供灵活的OEM/ODM服务，支持定制包装设计，最小起订量可议，满足不同客户的需求。</p>
+        </div>
+      </div>
+      
+      <!-- Timeline -->
+      <div class="timeline">
+        <div class="timeline-line"></div>
+        <div class="timeline-items">
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-year">1998</div>
+            <div class="timeline-desc">企业创立</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-year">2005</div>
+            <div class="timeline-desc">获SC认证</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-year">2012</div>
+            <div class="timeline-desc">进入出口市场</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-year">2020</div>
+            <div class="timeline-desc">数字化工厂</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="mission-quote">
+        "让世界品味中国好茶，为合作伙伴创造价值"
+      </div>
+    </div>
+  `,
+      setup() {
+        onMounted(() => {
+          const shouldReduceMotion = window.matchMedia('(max-width: 768px), (prefers-reduced-motion: reduce)').matches;
+          if (shouldReduceMotion) return;
+
+          gsap.registerPlugin(ScrollTrigger);
+
+          gsap.utils.toArray('.about-section').forEach((section, i) => {
+            gsap.from(section.children, {
+              scrollTrigger: {
+                trigger: section,
+                start: 'top 80%',
+              },
+              x: i % 2 === 0 ? -60 : 60,
+              opacity: 0,
+              duration: 0.8,
+              stagger: 0.2,
+              ease: 'power2.out'
+            });
+          });
+        });
+      }
+    };
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ COMPONENT: Products ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    const Products = {
+      template: `
+    <div class="section" style="padding-top: 8rem;">
+      <h2 class="section-title">产品中心</h2>
+      
+      <div class="filter-tabs">
+        <button 
+          v-for="category in categories" 
+          :key="category"
+          class="filter-tab"
+          :class="{ active: activeCategory === category }"
+          @click="filterProducts(category)"
+        >
+          {{ category }}
+        </button>
+      </div>
+      
+      <div class="products-grid-full" ref="productsGrid">
+        <div class="product-card" v-for="product in filteredProducts" :key="product.id">
+          <div class="product-image">
+            <svg width="120" height="120" viewBox="0 0 120 120">
+              <circle cx="60" cy="60" r="50" :fill="product.color" opacity="0.3"/>
+              <path d="M60 30 Q50 45 60 60 Q70 45 60 30 M40 45 Q50 52 60 60 M80 45 Q70 52 60 60" 
+                    :stroke="product.color" fill="none" stroke-width="3"/>
+            </svg>
+          </div>
+          <div class="product-info">
+            <div class="product-name">{{ product.name }}</div>
+            <div class="product-name-en">{{ product.nameEn }}</div>
+            <div class="product-tags">
+              <span class="product-tag" v-for="tag in product.tags" :key="tag">{{ tag }}</span>
+            </div>
+            <div class="product-specs">
+              起订量：{{ product.moq }} | 规格：{{ product.spec }}
+            </div>
+            <button class="product-cta" @click="$router.push('/contact')">联系我们</button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="custom-banner">
+        <h3>支持 OEM/ODM 定制</h3>
+        <p>定制包装设计 · 最小起订量可议 · 快速打样服务</p>
+      </div>
+    </div>
+  `,
+      setup() {
+        const activeCategory = ref('全部');
+        const productsGrid = ref(null);
+
+        const categories = ['全部', '绿茶', '红茶', '乌龙茶', '白茶', '普洱', '花草茶'];
+
+        const allProducts = [
+          { id: 1, name: '明前龙井', nameEn: 'Pre-Qingming Longjing', category: '绿茶', tags: ['散装', 'OEM可选'], moq: '50kg', spec: '50g/袋', color: '#2d5a3d' },
+          { id: 2, name: '滇红金芽', nameEn: 'Yunnan Golden Bud', category: '红茶', tags: ['袋泡', '礼盒'], moq: '100kg', spec: '2g/袋', color: '#c8a44a' },
+          { id: 3, name: '铁观音', nameEn: 'Tieguanyin Oolong', category: '乌龙茶', tags: ['散装', 'OEM可选'], moq: '50kg', spec: '100g/袋', color: '#1a3c2a' },
+          { id: 4, name: '白毫银针', nameEn: 'Silver Needle White Tea', category: '白茶', tags: ['散装', '礼盒'], moq: '30kg', spec: '50g/罐', color: '#e8c97a' },
+          { id: 5, name: '古树普洱', nameEn: 'Ancient Tree Puerh', category: '普洱', tags: ['饼茶', 'OEM可选'], moq: '100kg', spec: '357g/饼', color: '#6b6459' },
+          { id: 6, name: '茉莉花茶', nameEn: 'Jasmine Green Tea', category: '花草茶', tags: ['袋泡', '散装'], moq: '50kg', spec: '3g/袋', color: '#2d5a3d' }
+        ];
+
+        const filteredProducts = ref(allProducts);
+
+        const filterProducts = (category) => {
+          const grid = productsGrid.value;
+          const shouldReduceMotion = window.matchMedia('(max-width: 768px), (prefers-reduced-motion: reduce)').matches;
+
+          if (!grid || shouldReduceMotion) {
+            activeCategory.value = category;
+            filteredProducts.value = category === '全部'
+              ? allProducts
+              : allProducts.filter(p => p.category === category);
+            return;
+          }
+
+          // Fade out animation
+          gsap.to(grid.children, {
+            opacity: 0,
+            y: 20,
+            stagger: 0.05,
+            duration: 0.3,
+            onComplete: () => {
+              activeCategory.value = category;
+              filteredProducts.value = category === '全部'
+                ? allProducts
+                : allProducts.filter(p => p.category === category);
+
+              // Fade in animation
+              setTimeout(() => {
+                gsap.fromTo(grid.children,
+                  { opacity: 0, y: 20 },
+                  { opacity: 1, y: 0, stagger: 0.05, duration: 0.4, ease: 'power2.out' }
+                );
+              }, 50);
+            }
+          });
+        };
+
+        return {
+          categories,
+          activeCategory,
+          filteredProducts,
+          filterProducts,
+          productsGrid
+        };
+      }
+    };
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ COMPONENT: Process ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    const Process = {
+      template: `
+    <div class="section" style="padding-top: 8rem;">
+      <h2 class="section-title">生产工艺与溯源</h2>
+      
+      <div class="process-timeline">
+        <div class="process-step" v-for="(step, index) in processSteps" :key="index">
+          <div class="process-image">
+            <svg width="200" height="200" viewBox="0 0 200 200">
+              <rect width="200" height="200" :fill="step.color" opacity="0.2" rx="8"/>
+              <circle cx="100" cy="100" r="60" :stroke="step.color" fill="none" stroke-width="3"/>
+              <text x="100" y="110" text-anchor="middle" font-size="48" :fill="step.color" font-weight="bold">
+                {{ index + 1 }}
+              </text>
+            </svg>
+          </div>
+          <div class="process-content">
+            <h3>
+              <span class="process-number">{{ index + 1 }}</span>
+              {{ step.title }}
+            </h3>
+            <p>{{ step.description }}</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="traceability-section">
+        <h3>全程溯源系统</h3>
+        <p>每批茶叶均附溯源码，扫描可查：产地信息 / 加工工艺 / 检测报告</p>
+        <div class="phone-mockup">
+          <svg width="200" height="300" viewBox="0 0 200 300">
+            <rect x="20" y="20" width="160" height="160" fill="#1a3c2a"/>
+            <rect x="40" y="40" width="120" height="120" fill="white"/>
+            <text x="100" y="220" text-anchor="middle" font-size="14" fill="#6b6459">
+              扫码查看溯源信息
+            </text>
+          </svg>
+        </div>
+      </div>
+      
+      <h2 class="section-title" style="margin-top: 4rem;">资质认证</h2>
+      <div class="certifications">
+        <div class="cert-item" v-for="cert in certifications" :key="cert.name">
+          <div class="cert-icon">{{ cert.icon }}</div>
+          <div class="cert-name">{{ cert.name }}</div>
+        </div>
+      </div>
+    </div>
+  `,
+      setup() {
+        const processSteps = [
+          { title: '基地直采', description: '精选高山茶园，海拔800米以上，生态环境优越，确保原料品质。', color: '#2d5a3d' },
+          { title: '摊晾萎凋', description: '控温控湿环境下自然萎凋，保留茶叶天然香气和营养成分。', color: '#1a3c2a' },
+          { title: '揉捻成形', description: '采用现代化揉捻设备，精准控制力度和时间，形成完美条索。', color: '#c8a44a' },
+          { title: '干燥定型', description: '多段式干燥工艺，锁住茶叶香气，确保含水量符合标准。', color: '#2d5a3d' },
+          { title: '精选分级', description: '人工+机器双重筛选，按照国际标准进行分级包装。', color: '#1a3c2a' },
+          { title: '品检出库', description: '每批次抽检，确保农残、重金属等指标符合出口标准。', color: '#c8a44a' }
+        ];
+
+        const certifications = [
+          { name: 'ISO 22000', icon: '🏆' },
+          { name: '有机认证', icon: '🌿' },
+          { name: 'SC许可证', icon: '✓' },
+          { name: '欧盟出口资质', icon: '🌍' }
+        ];
+
+        onMounted(() => {
+          const shouldReduceMotion = window.matchMedia('(max-width: 768px), (prefers-reduced-motion: reduce)').matches;
+          if (shouldReduceMotion) return;
+
+          gsap.registerPlugin(ScrollTrigger);
+
+          gsap.utils.toArray('.process-step').forEach((step) => {
+            gsap.fromTo(step,
+              {
+                opacity: 0,
+                scale: 0.95
+              },
+              {
+                scrollTrigger: {
+                  trigger: step,
+                  start: 'top 80%',
+                },
+                opacity: 1,
+                scale: 1,
+                duration: 0.6,
+                ease: 'power2.out'
+              }
+            );
+          });
+
+          gsap.utils.toArray('.cert-item').forEach((cert, i) => {
+            gsap.from(cert, {
+              scrollTrigger: {
+                trigger: cert,
+                start: 'top 85%',
+              },
+              scale: 0.8,
+              opacity: 0,
+              duration: 0.5,
+              delay: i * 0.1,
+              ease: 'back.out(1.7)'
+            });
+          });
+        });
+
+        return {
+          processSteps,
+          certifications
+        };
+      }
+    };
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ COMPONENT: Contact ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    const Contact = {
+      template: `
+    <div class="section" style="padding-top: 8rem;">
+      <h2 class="section-title">联系我们</h2>
+      
+      <div class="contact-wrapper">
+        <div class="contact-info-section">
+          <h3>联系方式</h3>
+          
+          <div class="contact-cards">
+            <div class="contact-card">
+              <div class="contact-card-icon">
+                <svg width="32" height="32" viewBox="0 0 32 32">
+                  <path d="M16 4 C12 4 8 6 8 10 L8 12 L4 16 L8 20 L8 22 C8 26 12 28 16 28 C20 28 24 26 24 22 L24 20 L28 16 L24 12 L24 10 C24 6 20 4 16 4Z" stroke="currentColor" fill="none" stroke-width="2"/>
+                  <circle cx="16" cy="16" r="4" fill="currentColor"/>
+                </svg>
+              </div>
+              <div class="contact-card-content">
+                <div class="contact-card-label">公司地址</div>
+                <div class="contact-card-value">中国·四川省·雅安市·名山区</div>
+              </div>
+            </div>
+            
+            <div class="contact-card">
+              <div class="contact-card-icon">
+                <svg width="32" height="32" viewBox="0 0 32 32">
+                  <path d="M6 6 L6 26 L12 20 L18 26 L18 6 Z M12 6 L12 14" stroke="currentColor" fill="none" stroke-width="2"/>
+                  <rect x="20" y="6" width="8" height="4" fill="currentColor"/>
+                  <rect x="20" y="14" width="8" height="4" fill="currentColor"/>
+                </svg>
+              </div>
+              <div class="contact-card-content">
+                <div class="contact-card-label">联系电话</div>
+                <div class="contact-card-value">+86 400-888-8888</div>
+              </div>
+            </div>
+            
+            <div class="contact-card">
+              <div class="contact-card-icon">
+                <svg width="32" height="32" viewBox="0 0 32 32">
+                  <rect x="4" y="8" width="24" height="16" rx="2" stroke="currentColor" fill="none" stroke-width="2"/>
+                  <path d="M4 10 L16 18 L28 10" stroke="currentColor" fill="none" stroke-width="2"/>
+                </svg>
+              </div>
+              <div class="contact-card-content">
+                <div class="contact-card-label">电子邮箱</div>
+                <div class="contact-card-value">info@zhongcharen.com</div>
+              </div>
+            </div>
+            
+            <div class="contact-card">
+              <div class="contact-card-icon">
+                <svg width="32" height="32" viewBox="0 0 32 32">
+                  <path d="M8 6 L8 26 L14 20 L20 26 L20 10 L26 10 L26 26 L20 20 L14 26 L14 6 Z" stroke="currentColor" fill="none" stroke-width="2" transform="translate(3, 0)"/>
+                </svg>
+              </div>
+              <div class="contact-card-content">
+                <div class="contact-card-label">企业微信</div>
+                <div class="contact-card-value">+86 138-0000-0000</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="contact-hours">
+            <div class="contact-hours-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10" stroke="currentColor" fill="none" stroke-width="2"/>
+                <path d="M12 6 L12 12 L16 14" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="contact-hours-text">
+              <span>工作时间</span>
+              <strong>周一至周五 9:00-18:00</strong>
+            </div>
+          </div>
+          
+          <div class="map-container">
+            <iframe
+              class="map-iframe"
+              src="https://maps.google.com/maps?q=%E5%9B%9B%E5%B7%9D%E7%A7%8D%E8%8C%B6%E4%BA%BA%E8%8C%B6%E4%B8%9A%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8&z=15&output=embed"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="四川种茶人茶业有限公司地图"
+              aria-label="四川种茶人茶业有限公司地图">
+            </iframe>
+            <a
+              class="map-nav-btn"
+              href="https://uri.amap.com/search?keyword=%E5%9B%9B%E5%B7%9D%E7%A7%8D%E8%8C%B6%E4%BA%BA%E8%8C%B6%E4%B8%9A%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8&city=%E5%85%A8%E5%9B%BD"
+              @click="openMapNavigation"
+              target="_blank"
+              rel="noopener noreferrer">
+              <span class="map-nav-btn-text">
+                <span class="map-nav-btn-title">一键导航到公司</span>
+                <span class="map-nav-btn-sub">优先唤起高德/百度地图 App</span>
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  `,
+      setup() {
+        const openMapNavigation = (event) => {
+          event.preventDefault();
+
+          const companyName = '四川种茶人茶业有限公司';
+          const encodedName = encodeURIComponent(companyName);
+          const amapWebUrl = `https://uri.amap.com/search?keyword=${encodedName}&city=%E5%85%A8%E5%9B%BD`;
+          const baiduWebUrl = `https://map.baidu.com/search/${encodedName}`;
+
+          const ua = navigator.userAgent.toLowerCase();
+          const isMobile = /android|iphone|ipad|ipod|mobile/.test(ua);
+
+          if (!isMobile) {
+            window.open(amapWebUrl, '_blank', 'noopener,noreferrer');
+            return;
+          }
+
+          const isIOS = /iphone|ipad|ipod/.test(ua);
+          const deepLinks = isIOS
+            ? [
+              `amapuri://keywordNavi?sourceApplication=zcr&keyword=${encodedName}&style=2`,
+              `baidumap://map/place/search?query=${encodedName}&src=zcr`
+            ]
+            : [
+              `androidamap://keywordNavi?sourceApplication=zcr&keyword=${encodedName}&style=2`,
+              `baidumap://map/place/search?query=${encodedName}&src=zcr`
+            ];
+
+          const fallbackWeb = () => {
+            window.location.href = amapWebUrl;
+            setTimeout(() => {
+              if (!document.hidden) {
+                window.location.href = baiduWebUrl;
+              }
+            }, 900);
+          };
+
+          let index = 0;
+          const tryOpenApp = () => {
+            if (document.hidden) return;
+
+            if (index >= deepLinks.length) {
+              fallbackWeb();
+              return;
+            }
+
+            window.location.href = deepLinks[index];
+            index += 1;
+            setTimeout(tryOpenApp, 800);
+          };
+
+          tryOpenApp();
+        };
+
+        return { openMapNavigation };
+      }
+    };
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ROUTER SETUP ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    const routes = [
+      { path: '/', component: Home },
+      { path: '/about', component: About },
+      { path: '/products', component: Products },
+      { path: '/process', component: Process },
+      { path: '/contact', component: Contact }
+    ];
+
+    const router = createRouter({
+      history: createWebHashHistory(),
+      routes,
+      scrollBehavior(to, from, savedPosition) {
+        return { top: 0 };
+      }
+    });
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ MAIN APP ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    const app = createApp({
+      setup() {
+        const isScrolled = ref(false);
+        const mobileMenuOpen = ref(false);
+        const cursorDot = ref(null);
+        const cursorOutline = ref(null);
+        const transitionOverlay = ref(null);
+
+        let cursorX = 0, cursorY = 0;
+        let dotX = 0, dotY = 0;
+        let outlineX = 0, outlineY = 0;
+        let cursorFrame = null;
+
+        // Scroll handler
+        const handleScroll = () => {
+          isScrolled.value = window.scrollY > 80;
+        };
+
+        // Cursor follower - optimized for better performance
+        const updateCursor = (e) => {
+          cursorX = e.clientX;
+          cursorY = e.clientY;
+
+          // Update dot immediately for instant response
+          if (cursorDot.value) {
+            cursorDot.value.style.transform = `translate(${cursorX}px, ${cursorY}px) translate(-50%, -50%)`;
+          }
+        };
+
+        const animateCursor = () => {
+          // Only animate the outline with smooth following (increased speed)
+          outlineX += (cursorX - outlineX) * 0.35;
+          outlineY += (cursorY - outlineY) * 0.35;
+
+          if (cursorOutline.value) {
+            cursorOutline.value.style.transform = `translate(${outlineX}px, ${outlineY}px) translate(-50%, -50%)`;
+          }
+
+          cursorFrame = requestAnimationFrame(animateCursor);
+        };
+
+        // Hover effect
+        const handleMouseOver = (e) => {
+          if (e.target.tagName === 'BUTTON' || e.target.tagName === 'A') {
+            cursorOutline.value?.classList.add('hover');
+          }
+        };
+
+        const handleMouseOut = (e) => {
+          if (e.target.tagName === 'BUTTON' || e.target.tagName === 'A') {
+            cursorOutline.value?.classList.remove('hover');
+          }
+        };
+
+        const toggleMobileMenu = () => {
+          mobileMenuOpen.value = !mobileMenuOpen.value;
+        };
+
+        const scrollToContact = () => {
+          router.push('/contact');
+        };
+
+        // Page transition handlers
+        const onLeave = (el, done) => {
+          const overlay = transitionOverlay.value;
+          if (!overlay) {
+            done();
+            return;
+          }
+
+          const tl = gsap.timeline({
+            onComplete: () => {
+              done();
+            }
+          });
+
+          tl.to(el, {
+            x: -60,
+            opacity: 0,
+            duration: 0.35,
+            ease: 'power2.in'
+          }, 0)
+            .to(overlay, {
+              clipPath: 'inset(0 0 0 0)',
+              duration: 0.45,
+              ease: 'power2.inOut'
+            }, 0.15);
+        };
+
+        const onEnter = (el, done) => {
+          const overlay = transitionOverlay.value;
+          if (!overlay) {
+            gsap.set(el, { x: 0, opacity: 1 });
+            done();
+            return;
+          }
+
+          gsap.set(el, { x: 60, opacity: 0 });
+
+          const tl = gsap.timeline({
+            onComplete: () => {
+              gsap.set(overlay, { clipPath: 'inset(0 100% 0 0)' });
+              done();
+            }
+          });
+
+          tl.to(overlay, {
+            clipPath: 'inset(0 100% 0 0)',
+            duration: 0.4,
+            ease: 'power2.inOut'
+          }, 0.1)
+            .to(el, {
+              x: 0,
+              opacity: 1,
+              duration: 0.4,
+              ease: 'power2.out'
+            }, 0.25);
+        };
+
+        const onAfterEnter = () => {
+          window.scrollTo(0, 0);
+        };
+
+        onMounted(() => {
+          window.addEventListener('scroll', handleScroll);
+
+          // Only enable custom cursor on devices with precise pointer (mouse)
+          const hasFineCursor = window.matchMedia('(pointer: fine)').matches;
+          const shouldReduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+          if (hasFineCursor && !shouldReduceMotion) {
+            window.addEventListener('mousemove', updateCursor);
+            document.addEventListener('mouseover', handleMouseOver);
+            document.addEventListener('mouseout', handleMouseOut);
+            animateCursor();
+          }
+
+          if (!shouldReduceMotion) {
+            gsap.registerPlugin(ScrollTrigger);
+          }
+
+          nextTick(() => {
+            setupRouteRevealAnimations();
+          });
+        });
+
+        watch(mobileMenuOpen, (open) => {
+          document.body.classList.toggle('is-menu-open', open);
+        });
+
+        watch(() => router.currentRoute.value.fullPath, async () => {
+          mobileMenuOpen.value = false;
+
+          await nextTick();
+          setupRouteRevealAnimations();
+        });
+
+        onUnmounted(() => {
+          window.removeEventListener('scroll', handleScroll);
+          window.removeEventListener('mousemove', updateCursor);
+          document.removeEventListener('mouseover', handleMouseOver);
+          document.removeEventListener('mouseout', handleMouseOut);
+          if (cursorFrame) {
+            cancelAnimationFrame(cursorFrame);
+          }
+          document.body.classList.remove('is-menu-open');
+        });
+
+        return {
+          isScrolled,
+          mobileMenuOpen,
+          cursorDot,
+          cursorOutline,
+          transitionOverlay,
+          toggleMobileMenu,
+          scrollToContact,
+          onLeave,
+          onEnter,
+          onAfterEnter
+        };
+      }
+    });
+
+    app.use(router);
+    app.mount('#app');
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ANIMATION FUNCTIONS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+    function setupRouteRevealAnimations() {
+      const shouldReduceMotion = window.matchMedia('(max-width: 768px), (prefers-reduced-motion: reduce)').matches;
+      if (shouldReduceMotion || !window.gsap || !window.ScrollTrigger) {
+        return;
+      }
+
+      gsap.utils.toArray('.section-title, .cta-banner, .custom-banner, .contact-hours, .map-container').forEach((element) => {
+        if (element.dataset.revealed === '1') {
+          return;
+        }
+
+        element.dataset.revealed = '1';
+
+        gsap.from(element, {
+          scrollTrigger: {
+            trigger: element,
+            start: 'top 88%',
+            once: true
+          },
+          y: 28,
+          opacity: 0,
+          duration: 0.7,
+          ease: 'power2.out'
+        });
+      });
+    }
+
+    // Hero animation
+    function animateHero() {
+      // Reset initial states
+      gsap.set('.hero-subtitle', { y: 40, opacity: 0 });
+      gsap.set('.hero-title span', { y: 40, opacity: 0 });
+      gsap.set('.hero-desc', { y: 30, opacity: 0 });
+      gsap.set('.hero-ctas button', { y: 30, opacity: 0, scale: 0.9 });
+      gsap.set('.hero-stats', { x: 60, opacity: 0 });
+
+      const tl = gsap.timeline();
+
+      tl.to('.hero-subtitle',
+        { y: 0, opacity: 1, duration: 0.6, ease: 'power2.out' }
+      )
+        .to('.hero-title span',
+          { y: 0, opacity: 1, duration: 0.5, stagger: 0.05, ease: 'power2.out' },
+          0.2
+        )
+        .to('.hero-desc',
+          { y: 0, opacity: 1, duration: 0.5, ease: 'power2.out' },
+          0.5
+        )
+        .to('.hero-ctas button',
+          { y: 0, opacity: 1, scale: 1, duration: 0.5, stagger: 0.1, ease: 'back.out(1.7)' },
+          0.7
+        )
+        .to('.hero-stats',
+          { x: 0, opacity: 1, duration: 0.6, ease: 'power2.out' },
+          0.9
+        );
+    }
+
+    // Stats counter animation
+    function setupStatsCounter() {
+      const statNumbers = document.querySelectorAll('.stat-number');
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const target = parseInt(entry.target.dataset.target);
+            const duration = 2;
+
+            gsap.to(entry.target, {
+              innerText: target,
+              duration: duration,
+              snap: { innerText: 1 },
+              ease: 'power1.out',
+              onUpdate: function () {
+                entry.target.innerText = Math.ceil(entry.target.innerText);
+              }
+            });
+
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.5 });
+
+      statNumbers.forEach(stat => observer.observe(stat));
+    }
+
+  </script>
+
+</body>
+
+</html>
