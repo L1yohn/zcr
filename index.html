@@ -1467,11 +1467,88 @@
       background: var(--cream-dark);
     }
 
-    .map-iframe {
+    .map-static {
       width: 100%;
       height: 250px;
-      border: 0;
-      display: block;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-start;
+      position: relative;
+      background-color: #d7e2d0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 420'%3E%3Cdefs%3E%3ClinearGradient id='bg' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%23d9ead5'/%3E%3Cstop offset='55%25' stop-color='%23c6dec0'/%3E%3Cstop offset='100%25' stop-color='%23b2d0a9'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='1200' height='420' fill='url(%23bg)'/%3E%3Cg stroke='%239ebc98' stroke-opacity='0.48' fill='none'%3E%3Cpath d='M-40 360 C240 250 420 260 740 160 C900 110 1020 100 1240 20' stroke-width='5'/%3E%3Cpath d='M-60 300 C230 210 470 210 770 120 C930 75 1060 60 1260 -10' stroke-width='3.5'/%3E%3Cpath d='M-70 250 C240 160 520 150 800 70 C960 30 1080 10 1270 -40' stroke-width='2.5'/%3E%3C/g%3E%3Cg stroke='%23ffffff' stroke-opacity='0.2' fill='none'%3E%3Cpath d='M100 420 L420 0'/%3E%3Cpath d='M220 420 L540 0'/%3E%3Cpath d='M340 420 L660 0'/%3E%3Cpath d='M460 420 L780 0'/%3E%3Cpath d='M580 420 L900 0'/%3E%3Cpath d='M700 420 L1020 0'/%3E%3C/g%3E%3Cg transform='translate(740 96) rotate(-14)'%3E%3Cpath d='M0 40 C10 20 30 10 56 6 C42 28 26 42 4 48 Z' fill='%2397ca39'/%3E%3Cpath d='M0 40 C10 20 30 10 56 6 C42 28 26 42 4 48 Z' fill='none' stroke='%235b8226' stroke-width='2'/%3E%3Cpath d='M14 38 C24 28 36 18 48 11' stroke='%236c9930' stroke-width='2' stroke-linecap='round'/%3E%3C/g%3E%3C/svg%3E");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .map-static::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.18) 0%, rgba(24, 54, 38, 0.12) 100%);
+      opacity: 1;
+      z-index: 0;
+    }
+
+    .map-pin {
+      position: absolute;
+      top: 36%;
+      left: 52%;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #e14b4b;
+      border: 3px solid #fff;
+      box-shadow: 0 0 0 10px rgba(225, 75, 75, 0.18);
+      transform: translate(-50%, -50%);
+      z-index: 1;
+    }
+
+    .map-geo-pill {
+      position: absolute;
+      top: 0.85rem;
+      right: 0.85rem;
+      z-index: 1;
+      padding: 0.35rem 0.65rem;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: #183626;
+      background: rgba(255, 255, 255, 0.78);
+      border: 1px solid rgba(24, 54, 38, 0.12);
+      backdrop-filter: blur(4px);
+      white-space: nowrap;
+    }
+
+    .map-static-overlay {
+      position: relative;
+      z-index: 1;
+      margin: 1rem;
+      padding: 0.65rem 0.85rem;
+      border-radius: 10px;
+      background: rgba(26, 60, 42, 0.86);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+      max-width: calc(100% - 2rem);
+    }
+
+    .map-static-overlay strong {
+      font-size: 0.9rem;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .map-static-overlay span {
+      font-size: 0.78rem;
+      opacity: 0.9;
+    }
+
+    .map-static-overlay .map-coord {
+      font-size: 0.72rem;
+      opacity: 0.82;
+      letter-spacing: 0.2px;
     }
 
     .map-nav-btn {
@@ -2018,13 +2095,32 @@
         border-radius: 8px;
       }
 
-      .map-iframe {
+      .map-static {
         height: 200px;
       }
 
+      .map-static-overlay {
+        margin: 0.75rem;
+        max-width: calc(100% - 1.5rem);
+      }
+
+      .map-geo-pill {
+        top: 0.6rem;
+        right: 0.6rem;
+        font-size: 0.68rem;
+        padding: 0.3rem 0.55rem;
+      }
+
       .map-nav-btn {
+        position: static;
+        left: auto;
+        bottom: auto;
+        transform: none;
+        display: flex;
+        justify-content: center;
+        width: calc(100% - 1.5rem);
+        margin: 0.75rem auto 0.85rem;
         font-size: 0.8rem;
-        bottom: 0.75rem;
         padding: 0.45rem 0.7rem;
         border-radius: 12px;
       }
@@ -2885,14 +2981,15 @@
           </div>
           
           <div class="map-container">
-            <iframe
-              class="map-iframe"
-              src="https://maps.google.com/maps?q=%E5%9B%9B%E5%B7%9D%E7%A7%8D%E8%8C%B6%E4%BA%BA%E8%8C%B6%E4%B8%9A%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8&z=15&output=embed"
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-              title="四川种茶人茶业有限公司地图"
-              aria-label="四川种茶人茶业有限公司地图">
-            </iframe>
+            <div class="map-static" role="img" aria-label="四川种茶人茶业有限公司位置示意图">
+              <span class="map-pin" aria-hidden="true"></span>
+              <span class="map-geo-pill">北纬 30.0842° · 东经 103.0458°</span>
+              <div class="map-static-overlay">
+                <strong>四川种茶人茶业有限公司</strong>
+                <span>四川省雅安市名山区</span>
+                <span class="map-coord">坐标：30.0842, 103.0458</span>
+              </div>
+            </div>
             <a
               class="map-nav-btn"
               href="https://uri.amap.com/search?keyword=%E5%9B%9B%E5%B7%9D%E7%A7%8D%E8%8C%B6%E4%BA%BA%E8%8C%B6%E4%B8%9A%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8&city=%E5%85%A8%E5%9B%BD"
