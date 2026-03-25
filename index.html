@@ -2226,6 +2226,7 @@
       .wechat-toggle {
         padding: 0.88rem 0.95rem;
         gap: 0.75rem;
+        cursor: pointer !important;
       }
 
       .wechat-toggle-title {
@@ -2234,6 +2235,7 @@
 
       .wechat-toggle-sub {
         font-size: 0.78rem;
+        display: none;
       }
 
       .contact-card-wechat.is-open .wechat-qr-panel {
@@ -2243,6 +2245,11 @@
 
       .wechat-qr-panel {
         padding: 0 0.95rem;
+        display: none;
+      }
+
+      .wechat-toggle-arrow {
+        display: none;
       }
 
       .wechat-qr-body {
@@ -3204,7 +3211,16 @@
         const wechatExpanded = ref(false);
 
         const toggleWechatQr = () => {
-          wechatExpanded.value = !wechatExpanded.value;
+          // 检测是否是手机端（768px以下为手机端）
+          const isMobile = window.innerWidth < 768;
+
+          if (isMobile) {
+            // 手机端：直接跳转到企业微信链接
+            window.location.href = 'https://work.weixin.qq.com/ca/cawcdeeb0ed941353d';
+          } else {
+            // 桌面端：展开二维码
+            wechatExpanded.value = !wechatExpanded.value;
+          }
         };
 
         const openMapNavigation = (event) => {
