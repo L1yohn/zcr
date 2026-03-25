@@ -320,6 +320,8 @@
       color: var(--text-dark);
       padding: 0.75rem 1.75rem;
       border-radius: 4px;
+      border: 1px solid rgba(26, 60, 42, 0.72);
+      box-shadow: 0 4px 14px rgba(26, 60, 42, 0.14);
       font-weight: 500;
       transition: all 0.3s ease;
       animation: fadeInRight 0.8s ease-out 0.8s both;
@@ -361,6 +363,7 @@
 
     .navbar-cta:hover {
       transform: translateY(-2px);
+      border-color: rgba(26, 60, 42, 0.58);
       box-shadow: 0 4px 12px rgba(200, 164, 74, 0.4);
     }
 
@@ -657,11 +660,14 @@
       border-radius: 4px;
       font-weight: 500;
       transition: all 0.3s ease;
+      border: 1px solid transparent;
     }
 
     .btn-primary {
       background: var(--gold);
       color: var(--text-dark);
+      border-color: rgba(26, 60, 42, 0.72);
+      box-shadow: 0 4px 14px rgba(26, 60, 42, 0.14);
       position: relative;
       overflow: hidden;
       z-index: 1;
@@ -687,6 +693,7 @@
 
     .btn-primary:hover {
       background: var(--gold-light);
+      border-color: rgba(26, 60, 42, 0.58);
       transform: translateY(-2px);
       box-shadow: 0 6px 20px rgba(200, 164, 74, 0.4);
     }
@@ -3146,7 +3153,7 @@
                     <img src="./image/wechat.jpg" alt="企业微信二维码" width="118" height="118" loading="lazy" />
                   </div>
                   <div class="wechat-qr-text">
-                    <strong>企业微信 · 四川种茶人茶业</strong>
+                    <strong>企业微信 · 四川种茶人</strong>
                     <p>打开微信扫一扫，或使用企业微信扫码添加。</p>
                   </div>
                 </div>
