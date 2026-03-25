@@ -2340,6 +2340,10 @@
         border-radius: 12px;
       }
 
+      .map-nav-btn:hover {
+        transform: none;
+      }
+
       .map-nav-btn-title {
         font-size: 0.82rem;
       }
@@ -2518,6 +2522,12 @@
 
       .navbar-links a:hover {
         transform: none;
+      }
+
+      .map-nav-btn:hover {
+        transform: none;
+        background: linear-gradient(135deg, #0f5c35 0%, #1a3c2a 100%);
+        box-shadow: 0 8px 20px rgba(12, 38, 28, 0.35);
       }
 
       .cta-banner::before,
@@ -3228,7 +3238,7 @@
             </div>
             <a
               class="map-nav-btn"
-              href="https://uri.amap.com/search?keyword=%E5%9B%9B%E5%B7%9D%E7%A7%8D%E8%8C%B6%E4%BA%BA%E8%8C%B6%E4%B8%9A%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8&city=%E5%85%A8%E5%9B%BD"
+              href="https://uri.amap.com/navigation?to=103.0458,30.0842,%E5%9B%9B%E5%B7%9D%E7%A7%8D%E8%8C%B6%E4%BA%BA%E8%8C%B6%E4%B8%9A%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8&mode=car&policy=1&src=zcr&coordinate=gaode"
               @click="openMapNavigation"
               target="_blank"
               rel="noopener noreferrer">
@@ -3279,8 +3289,10 @@
 
           const companyName = '四川种茶人茶业有限公司';
           const encodedName = encodeURIComponent(companyName);
-          const amapWebUrl = `https://uri.amap.com/search?keyword=${encodedName}&city=%E5%85%A8%E5%9B%BD`;
-          const baiduWebUrl = `https://map.baidu.com/search/${encodedName}`;
+          const latitude = 30.0842;
+          const longitude = 103.0458;
+          const amapWebUrl = `https://uri.amap.com/navigation?to=${longitude},${latitude},${encodedName}&mode=car&policy=1&src=zcr&coordinate=gaode`;
+          const baiduWebUrl = `https://api.map.baidu.com/direction?destination=latlng:${latitude},${longitude}|name:${encodedName}&mode=driving&region=%E9%9B%85%E5%AE%89%E5%B8%82&output=html&src=webapp.zcr`;
 
           const ua = navigator.userAgent.toLowerCase();
           const isMobile = /android|iphone|ipad|ipod|mobile/.test(ua);
@@ -3293,12 +3305,12 @@
           const isIOS = /iphone|ipad|ipod/.test(ua);
           const deepLinks = isIOS
             ? [
-              `amapuri://keywordNavi?sourceApplication=zcr&keyword=${encodedName}&style=2`,
-              `baidumap://map/place/search?query=${encodedName}&src=zcr`
+              `amapuri://route/plan/?sourceApplication=zcr&dlat=${latitude}&dlon=${longitude}&dname=${encodedName}&dev=0&t=0`,
+              `baidumap://map/direction?destination=latlng:${latitude},${longitude}|name:${encodedName}&mode=driving&src=zcr`
             ]
             : [
-              `androidamap://keywordNavi?sourceApplication=zcr&keyword=${encodedName}&style=2`,
-              `baidumap://map/place/search?query=${encodedName}&src=zcr`
+              `androidamap://route?sourceApplication=zcr&dlat=${latitude}&dlon=${longitude}&dname=${encodedName}&dev=0&t=0`,
+              `baidumap://map/direction?destination=latlng:${latitude},${longitude}|name:${encodedName}&mode=driving&src=zcr`
             ];
 
           const fallbackWeb = () => {
