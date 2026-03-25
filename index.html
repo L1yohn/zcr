@@ -4,9 +4,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-  <meta name="description" content="种茶人 - 专注高端茶叶精深加工25年，为全球300+经销商提供优质茶叶，年产能5000吨，出口30+国家">
-  <meta name="keywords" content="茶叶批发,茶叶加工,茶叶出口,OEM定制,茶叶经销商">
-  <title>种茶人 - 高端茶叶精深加工</title>
+  <meta name="description" content="四川种茶人茶业有限公司专注高端茶叶精深加工25年，为全球300+经销商提供优质茶叶，年产能5000吨，出口30+国家。">
+  <meta name="keywords" content="四川种茶人茶业有限公司,种茶人,茶叶批发,茶叶加工,茶叶出口,OEM定制,茶叶经销商">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <link rel="canonical" href="/">
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
+  <title>四川种茶人茶业有限公司 | 高端茶叶精深加工</title>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "四川种茶人茶业有限公司",
+      "alternateName": "种茶人",
+      "url": "/",
+      "logo": "/favicon.ico",
+      "description": "专注高端茶叶精深加工25年，为全球经销商提供稳定高品质茶叶供应。"
+    }
+  </script>
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -98,7 +113,7 @@
 
     @media (pointer: fine) {
       body {
-        cursor: none;
+        cursor: auto;
       }
 
       a,
@@ -109,7 +124,7 @@
       [role='button'],
       .navbar,
       .navbar * {
-        cursor: none !important;
+        cursor: auto !important;
       }
     }
 
@@ -139,36 +154,7 @@
 
       .cursor-dot,
       .cursor-outline {
-        display: block;
-      }
-
-      .cursor-dot {
-        width: 20px;
-        height: 24px;
-        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M14 55C13 48 16 41 20 36C28 24 41 13 58 8C50 24 43 37 33 48C28 54 22 57 14 55Z' fill='%239bcc3a'/%3E%3Cpath d='M18 53C17 47 19 41 23 36C31 25 42 16 55 10C47 24 40 35 31 46C27 51 23 54 18 53Z' fill='%23c9e36a'/%3E%3Cpath d='M21 39C29 32 37 24 48 16' stroke='%237aa928' stroke-width='2.6' stroke-linecap='round'/%3E%3Cpath d='M14 55C15 59 15 62 17 63C19 64 21 63 20 61C18 58 18 56 18 53' fill='%236b9622'/%3E%3C/svg%3E") center/contain no-repeat;
-        position: fixed;
-        pointer-events: none;
-        z-index: 10000;
-        filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.35));
-        will-change: transform;
-      }
-
-      .cursor-outline {
-        width: 46px;
-        height: 54px;
-        border: none;
-        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 72 72'%3E%3Cpath d='M18 62C16 53 19 45 24 38C33 26 47 15 65 9C56 27 48 41 37 53C31 59 25 63 18 62Z' fill='%23b7da55' fill-opacity='0.42'/%3E%3Cpath d='M18 62C16 53 19 45 24 38C33 26 47 15 65 9C56 27 48 41 37 53C31 59 25 63 18 62Z' fill='none' stroke='%232f4d11' stroke-width='2.4'/%3E%3Cpath d='M26 45C35 38 44 29 56 20' stroke='%236b9622' stroke-width='2.4' stroke-linecap='round'/%3E%3Cpath d='M18 62C19 66 19 69 21 70C23 71 25 70 24 67C22 65 22 63 22 60' fill='%2361861e'/%3E%3C/svg%3E") center/contain no-repeat;
-        position: fixed;
-        pointer-events: none;
-        z-index: 9999;
-        filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.55));
-        transition: width 0.2s ease, height 0.2s ease;
-        will-change: transform;
-      }
-
-      .cursor-outline.hover {
-        width: 56px;
-        height: 66px;
+        display: none;
       }
     }
 
@@ -215,7 +201,7 @@
     .navbar-logo {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
+      gap: 0;
       font-size: 1.5rem;
       font-weight: 600;
       color: white;
@@ -236,11 +222,14 @@
     }
 
     .navbar-logo svg {
+      width: 220px;
+      height: auto;
+      display: block;
       transition: transform 0.3s ease;
     }
 
     .navbar-logo:hover svg {
-      transform: rotate(360deg);
+      transform: scale(1.02);
     }
 
     .navbar-links {
@@ -292,6 +281,7 @@
       position: relative;
       text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
       display: inline-block;
+      cursor: pointer !important;
     }
 
     .navbar-links a::before {
@@ -335,6 +325,7 @@
       animation: fadeInRight 0.8s ease-out 0.8s both;
       position: relative;
       overflow: hidden;
+      cursor: pointer !important;
     }
 
     @keyframes fadeInRight {
@@ -628,6 +619,14 @@
       text-transform: uppercase;
       color: var(--gold-light);
       margin-bottom: 1rem;
+    }
+
+    .hero-company-name {
+      font-size: 1.35rem;
+      font-weight: 600;
+      line-height: 1.5;
+      color: #ffffff;
+      margin-bottom: 0.9rem;
     }
 
     .hero-title {
@@ -1422,6 +1421,138 @@
       word-break: break-word;
     }
 
+    .contact-card-wechat {
+      display: block;
+      padding: 0;
+      overflow: hidden;
+      grid-column: 1 / -1;
+      border: 1px solid rgba(26, 60, 42, 0.16);
+      box-shadow: 0 8px 22px rgba(26, 60, 42, 0.08);
+    }
+
+    .wechat-toggle {
+      width: 100%;
+      border: none;
+      background: rgba(45, 90, 61, 0.14);
+      color: inherit;
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      text-align: left;
+      padding: 1rem 1.1rem;
+      cursor: pointer;
+      transition: background 0.32s ease;
+    }
+
+    .contact-card-wechat:hover .wechat-toggle,
+    .contact-card-wechat.is-open .wechat-toggle {
+      background: rgba(45, 90, 61, 0.2);
+    }
+
+    .wechat-toggle-copy {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .wechat-toggle-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--green-deep);
+      line-height: 1.25;
+    }
+
+    .wechat-toggle-sub {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      line-height: 1.25;
+    }
+
+    .wechat-toggle-arrow {
+      width: 0;
+      height: 0;
+      border-left: 6px solid transparent;
+      border-right: 6px solid transparent;
+      border-top: 9px solid rgba(26, 60, 42, 0.62);
+      transform-origin: center;
+      transition: transform 0.28s ease;
+      flex-shrink: 0;
+      margin-left: 0.4rem;
+    }
+
+    .contact-card-wechat.is-open .wechat-toggle-arrow {
+      transform: rotate(180deg);
+    }
+
+    .wechat-qr-panel {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      padding: 0 1.1rem;
+      background: #f7f5f1;
+      border-top: 1px solid rgba(26, 60, 42, 0.08);
+      transition: max-height 0.45s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease, padding 0.36s ease;
+    }
+
+    .contact-card-wechat.is-open .wechat-qr-panel {
+      max-height: 260px;
+      opacity: 1;
+      padding: 1rem 1.1rem 1.1rem;
+    }
+
+    .wechat-qr-body {
+      display: grid;
+      grid-template-columns: 132px 1fr;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .wechat-qr-image-wrap {
+      width: 132px;
+      height: 132px;
+      border-radius: 10px;
+      background: white;
+      border: 1px solid rgba(26, 60, 42, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 5px 14px rgba(26, 60, 42, 0.08);
+      overflow: hidden;
+    }
+
+    .wechat-qr-image-wrap img {
+      width: 118px;
+      height: 118px;
+      object-fit: cover;
+      border-radius: 6px;
+      transform: scale(0.96);
+      transition: transform 0.35s ease;
+    }
+
+    .contact-card-wechat.is-open .wechat-qr-image-wrap img {
+      transform: scale(1);
+    }
+
+    .wechat-qr-text {
+      min-width: 0;
+    }
+
+    .wechat-qr-text strong {
+      display: block;
+      font-size: 1.04rem;
+      color: var(--green-deep);
+      margin-bottom: 0.35rem;
+    }
+
+    .wechat-qr-text p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin: 0;
+    }
+
     .contact-hours {
       display: flex;
       align-items: center;
@@ -1817,12 +1948,12 @@
         z-index: 1002;
         display: flex;
         align-items: center;
-        gap: 0.5rem;
+        gap: 0;
       }
 
       .navbar-logo svg {
-        width: 32px;
-        height: 32px;
+        width: 165px;
+        height: auto;
         flex-shrink: 0;
       }
 
@@ -2081,6 +2212,52 @@
         padding: 1.25rem;
       }
 
+      .contact-card-wechat {
+        padding: 0;
+      }
+
+      .wechat-toggle {
+        padding: 0.88rem 0.95rem;
+        gap: 0.75rem;
+      }
+
+      .wechat-toggle-title {
+        font-size: 0.95rem;
+      }
+
+      .wechat-toggle-sub {
+        font-size: 0.78rem;
+      }
+
+      .contact-card-wechat.is-open .wechat-qr-panel {
+        max-height: 420px;
+        padding: 0.9rem 0.95rem 1rem;
+      }
+
+      .wechat-qr-panel {
+        padding: 0 0.95rem;
+      }
+
+      .wechat-qr-body {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+      }
+
+      .wechat-qr-image-wrap {
+        width: 150px;
+        height: 150px;
+        margin: 0 auto;
+      }
+
+      .wechat-qr-image-wrap img {
+        width: 134px;
+        height: 134px;
+      }
+
+      .wechat-qr-text {
+        text-align: center;
+      }
+
       .contact-hours {
         padding: 1rem 1.25rem;
         flex-direction: column;
@@ -2180,8 +2357,8 @@
       }
 
       .navbar-logo svg {
-        width: 28px;
-        height: 28px;
+        width: 138px;
+        height: auto;
       }
 
       .navbar-cta {
@@ -2360,11 +2537,12 @@
     <!-- Navigation -->
     <nav class="navbar" :class="{ scrolled: isScrolled }">
       <div class="navbar-logo">
-        <svg width="40" height="40" viewBox="0 0 40 40">
-          <path d="M20 5 Q15 15 20 25 Q25 15 20 5 M10 15 Q15 20 20 25 M30 15 Q25 20 20 25" stroke="currentColor"
-            fill="none" stroke-width="2" />
+        <svg viewBox="0 0 820 250" role="img" aria-label="种茶人 TEA PLANTER 商标">
+          <text x="10" y="126" font-family="'Noto Serif SC', serif" font-size="146" font-weight="600" letter-spacing="6"
+            fill="currentColor" stroke="none">种茶人</text>
+          <text x="10" y="228" font-family="'Noto Serif SC', serif" font-size="92" font-weight="600" letter-spacing="3"
+            fill="currentColor" stroke="none">TEA PLANTER</text>
         </svg>
-        <span>种茶人</span>
       </div>
 
       <ul class="navbar-links">
@@ -2423,9 +2601,9 @@
 
         <div class="footer-section">
           <h4>联系方式</h4>
-          <p>电话：+86 400-888-8888</p>
-          <p>邮箱：info@zhongcharen.com</p>
-          <p>企业微信：+86 138-0000-0000</p>
+          <p>电话：+86 18148181361</p>
+          <p>邮箱：cheng@teaplanter.cn</p>
+          <p>企业微信：</p><img src="./image/wechat.jpg" alt="企业微信" height="100" width="100" />
         </div>
       </div>
 
@@ -2457,10 +2635,11 @@
         <div class="hero-content">
           <div class="hero-text">
             <div class="hero-subtitle">ZHONGCHAREN PREMIUM TEA</div>
-            <h1 class="hero-title">
+            <h1 class="hero-company-name">四川种茶人茶业有限公司</h1>
+            <h2 class="hero-title">
               <span>源</span><span>于</span><span>高</span><span>山</span><br>
               <span>精</span><span>于</span><span>工</span><span>艺</span>
-            </h1>
+            </h2>
             <p class="hero-desc">Premium Tea Processing · Trusted by 300+ Global Partners</p>
             <div class="hero-ctas">
               <button class="btn-primary" @click="$router.push('/products')">查看产品目录</button>
@@ -2917,16 +3096,16 @@
             <div class="contact-card">
               <div class="contact-card-icon">
                 <svg width="32" height="32" viewBox="0 0 32 32">
-                  <path d="M16 4 C12 4 8 6 8 10 L8 12 L4 16 L8 20 L8 22 C8 26 12 28 16 28 C20 28 24 26 24 22 L24 20 L28 16 L24 12 L24 10 C24 6 20 4 16 4Z" stroke="currentColor" fill="none" stroke-width="2"/>
-                  <circle cx="16" cy="16" r="4" fill="currentColor"/>
+                  <rect x="4" y="8" width="24" height="16" rx="2" stroke="currentColor" fill="none" stroke-width="2"/>
+                  <path d="M4 10 L16 18 L28 10" stroke="currentColor" fill="none" stroke-width="2"/>
                 </svg>
               </div>
               <div class="contact-card-content">
-                <div class="contact-card-label">公司地址</div>
-                <div class="contact-card-value">中国·四川省·雅安市·名山区</div>
+                <div class="contact-card-label">电子邮箱</div>
+                <div class="contact-card-value">cheng@teaplanter.cn</div>
               </div>
             </div>
-            
+
             <div class="contact-card">
               <div class="contact-card-icon">
                 <svg width="32" height="32" viewBox="0 0 32 32">
@@ -2937,32 +3116,40 @@
               </div>
               <div class="contact-card-content">
                 <div class="contact-card-label">联系电话</div>
-                <div class="contact-card-value">+86 400-888-8888</div>
+                <div class="contact-card-value">+86 18148181361</div>
               </div>
             </div>
             
-            <div class="contact-card">
-              <div class="contact-card-icon">
-                <svg width="32" height="32" viewBox="0 0 32 32">
-                  <rect x="4" y="8" width="24" height="16" rx="2" stroke="currentColor" fill="none" stroke-width="2"/>
-                  <path d="M4 10 L16 18 L28 10" stroke="currentColor" fill="none" stroke-width="2"/>
-                </svg>
-              </div>
-              <div class="contact-card-content">
-                <div class="contact-card-label">电子邮箱</div>
-                <div class="contact-card-value">info@zhongcharen.com</div>
-              </div>
-            </div>
-            
-            <div class="contact-card">
-              <div class="contact-card-icon">
-                <svg width="32" height="32" viewBox="0 0 32 32">
-                  <path d="M8 6 L8 26 L14 20 L20 26 L20 10 L26 10 L26 26 L20 20 L14 26 L14 6 Z" stroke="currentColor" fill="none" stroke-width="2" transform="translate(3, 0)"/>
-                </svg>
-              </div>
-              <div class="contact-card-content">
-                <div class="contact-card-label">企业微信</div>
-                <div class="contact-card-value">+86 138-0000-0000</div>
+            <div class="contact-card contact-card-wechat" :class="{ 'is-open': wechatExpanded }">
+              <button
+                class="wechat-toggle"
+                type="button"
+                @click="toggleWechatQr"
+                :aria-expanded="String(wechatExpanded)"
+                aria-controls="wechat-qr-panel"
+              >
+                <div class="contact-card-icon">
+                  <svg width="32" height="32" viewBox="0 0 32 32">
+                    <path d="M8 6 L8 26 L14 20 L20 26 L20 10 L26 10 L26 26 L20 20 L14 26 L14 6 Z" stroke="currentColor" fill="none" stroke-width="2" transform="translate(3, 0)"/>
+                  </svg>
+                </div>
+                <div class="wechat-toggle-copy">
+                  <span class="wechat-toggle-title">企业微信</span>
+                  <span class="wechat-toggle-sub">点击展开查看二维码</span>
+                </div>
+                <span class="wechat-toggle-arrow" aria-hidden="true"></span>
+              </button>
+
+              <div class="wechat-qr-panel" id="wechat-qr-panel" :aria-hidden="String(!wechatExpanded)">
+                <div class="wechat-qr-body">
+                  <div class="wechat-qr-image-wrap">
+                    <img src="./image/wechat.jpg" alt="企业微信二维码" width="118" height="118" loading="lazy" />
+                  </div>
+                  <div class="wechat-qr-text">
+                    <strong>企业微信 · 四川种茶人茶业</strong>
+                    <p>打开微信扫一扫，或使用企业微信扫码添加。</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -3007,6 +3194,12 @@
     </div>
   `,
       setup() {
+        const wechatExpanded = ref(false);
+
+        const toggleWechatQr = () => {
+          wechatExpanded.value = !wechatExpanded.value;
+        };
+
         const openMapNavigation = (event) => {
           event.preventDefault();
 
@@ -3060,7 +3253,11 @@
           tryOpenApp();
         };
 
-        return { openMapNavigation };
+        return {
+          wechatExpanded,
+          toggleWechatQr,
+          openMapNavigation
+        };
       }
     };
 
