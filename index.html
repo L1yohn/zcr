@@ -1068,33 +1068,35 @@
       font-size: 1rem;
       font-weight: 700;
       letter-spacing: 0.08em;
-      border: 1px solid rgba(26, 60, 42, 0.66);
-      background: linear-gradient(135deg, #d9b861 0%, #c8a44a 60%, #b89135 100%);
-      box-shadow: 0 10px 24px rgba(10, 24, 18, 0.35), 0 2px 6px rgba(200, 164, 74, 0.35);
+      color: var(--gold-light);
+      border: 1px solid rgba(200, 164, 74, 0.78);
+      background: linear-gradient(135deg, #123b29 0%, #1a3c2a 58%, #1d4d34 100%);
+      box-shadow: 0 10px 24px rgba(10, 24, 18, 0.36), inset 0 0 0 1px rgba(232, 201, 122, 0.16);
       transition: transform 0.28s ease, box-shadow 0.28s ease, filter 0.28s ease;
       animation: ctaBtnGlow 2.4s ease-in-out infinite;
     }
 
     .cta-banner .btn-primary:hover {
       transform: translateY(-3px) scale(1.02);
-      box-shadow: 0 14px 28px rgba(10, 24, 18, 0.42), 0 4px 10px rgba(200, 164, 74, 0.44);
-      filter: saturate(1.06);
+      color: #f3ddb1;
+      box-shadow: 0 14px 28px rgba(10, 24, 18, 0.44), inset 0 0 0 1px rgba(232, 201, 122, 0.32), 0 0 0 2px rgba(200, 164, 74, 0.14);
+      filter: saturate(1.04);
     }
 
     .cta-banner .btn-primary:active {
       transform: translateY(0) scale(0.98);
-      box-shadow: 0 8px 18px rgba(10, 24, 18, 0.3), 0 2px 6px rgba(200, 164, 74, 0.28);
+      box-shadow: 0 8px 18px rgba(10, 24, 18, 0.32), inset 0 0 0 1px rgba(232, 201, 122, 0.2);
     }
 
     @keyframes ctaBtnGlow {
 
       0%,
       100% {
-        box-shadow: 0 10px 24px rgba(10, 24, 18, 0.35), 0 2px 6px rgba(200, 164, 74, 0.32);
+        box-shadow: 0 10px 24px rgba(10, 24, 18, 0.36), inset 0 0 0 1px rgba(232, 201, 122, 0.16);
       }
 
       50% {
-        box-shadow: 0 12px 26px rgba(10, 24, 18, 0.38), 0 4px 10px rgba(232, 201, 122, 0.45);
+        box-shadow: 0 12px 26px rgba(10, 24, 18, 0.4), inset 0 0 0 1px rgba(232, 201, 122, 0.28), 0 0 0 2px rgba(200, 164, 74, 0.12);
       }
     }
 
