@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-  <meta name="description" content="四川种茶人茶业有限公司专注高端茶叶精深加工25年，为全球300+经销商提供优质茶叶，年产能5000吨，出口30+国家。">
+  <meta name="description" content="四川种茶人茶业有限公司专注高端茶叶精深加工25年，为全球300+经销商提供优质茶叶，年产能5000吨。">
   <meta name="keywords" content="四川种茶人茶业有限公司,种茶人,茶叶批发,茶叶加工,茶叶出口,OEM定制,茶叶经销商">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <link rel="canonical" href="/">
@@ -436,26 +436,50 @@
 
     .mobile-menu a {
       color: white;
-      font-size: 1.5rem;
-      font-weight: 500;
+      font-size: 1.28rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
       opacity: 0;
       transform: translateY(20px);
       animation: slideInUp 0.4s ease forwards;
       position: relative;
       z-index: 1;
-      padding: 0.75rem 2rem;
-      border-radius: 8px;
+      padding: 0.5rem 0.4rem;
+      border-radius: 0;
       transition: all 0.3s ease;
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(10px);
-      min-width: 200px;
+      background: transparent;
+      min-width: 0;
       text-align: center;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    }
+
+    .mobile-menu a::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      right: 50%;
+      bottom: -0.35rem;
+      height: 2px;
+      background: var(--gold);
+      transition: all 0.28s ease;
     }
 
     .mobile-menu a:hover,
     .mobile-menu a:active {
-      background: rgba(200, 164, 74, 0.2);
-      transform: translateX(10px);
+      color: var(--gold-light);
+      transform: translateY(-2px);
+    }
+
+    .mobile-menu a:hover::after,
+    .mobile-menu a:active::after,
+    .mobile-menu a.router-link-active::after {
+      left: 0;
+      right: 0;
+    }
+
+    .mobile-menu a.mobile-menu-link-emphasis {
+      color: var(--gold-light);
+      font-weight: 700;
     }
 
     .mobile-menu a:nth-child(2) {
@@ -814,7 +838,7 @@
     /* Stats Section */
     .stats-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 3rem;
       text-align: center;
     }
@@ -1035,18 +1059,42 @@
       opacity: 1;
       position: relative;
       z-index: 1;
-      animation: bounce 2s ease-in-out infinite;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 176px;
+      padding: 0.88rem 2.2rem;
+      border-radius: 999px;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      border: 1px solid rgba(26, 60, 42, 0.66);
+      background: linear-gradient(135deg, #d9b861 0%, #c8a44a 60%, #b89135 100%);
+      box-shadow: 0 10px 24px rgba(10, 24, 18, 0.35), 0 2px 6px rgba(200, 164, 74, 0.35);
+      transition: transform 0.28s ease, box-shadow 0.28s ease, filter 0.28s ease;
+      animation: ctaBtnGlow 2.4s ease-in-out infinite;
     }
 
-    @keyframes bounce {
+    .cta-banner .btn-primary:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 14px 28px rgba(10, 24, 18, 0.42), 0 4px 10px rgba(200, 164, 74, 0.44);
+      filter: saturate(1.06);
+    }
+
+    .cta-banner .btn-primary:active {
+      transform: translateY(0) scale(0.98);
+      box-shadow: 0 8px 18px rgba(10, 24, 18, 0.3), 0 2px 6px rgba(200, 164, 74, 0.28);
+    }
+
+    @keyframes ctaBtnGlow {
 
       0%,
       100% {
-        transform: translateY(0);
+        box-shadow: 0 10px 24px rgba(10, 24, 18, 0.35), 0 2px 6px rgba(200, 164, 74, 0.32);
       }
 
       50% {
-        transform: translateY(-5px);
+        box-shadow: 0 12px 26px rgba(10, 24, 18, 0.38), 0 4px 10px rgba(232, 201, 122, 0.45);
       }
     }
 
@@ -2385,6 +2433,12 @@
       .custom-banner p {
         font-size: 0.95rem;
       }
+
+      .cta-banner .btn-primary {
+        min-width: 164px;
+        padding: 0.84rem 1.8rem;
+        font-size: 0.95rem;
+      }
     }
 
     @media (max-width: 480px) {
@@ -2438,6 +2492,14 @@
       .stats-grid {
         grid-template-columns: 1fr;
         gap: 1rem;
+      }
+
+      .cta-banner .btn-primary {
+        width: 100%;
+        max-width: 240px;
+        min-width: 0;
+        padding: 0.9rem 1.2rem;
+        font-size: 0.95rem;
       }
 
       .stat-item {
@@ -2595,10 +2657,9 @@
 
       <ul class="navbar-links">
         <li><router-link to="/">首页</router-link></li>
-        <li><router-link to="/about">品牌故事</router-link></li>
-        <li><router-link to="/products">产品中心</router-link></li>
+        <li><router-link to="/about">关于我们</router-link></li>
         <li><router-link to="/process">生产工艺</router-link></li>
-        <li><router-link to="/contact">联系我们</router-link></li>
+        <li><router-link to="/products">产品</router-link></li>
       </ul>
 
       <button class="navbar-cta" @click="scrollToContact">联系我们</button>
@@ -2615,10 +2676,10 @@
       <div v-if="mobileMenuOpen" class="mobile-menu" @click.self="toggleMobileMenu">
         <button class="mobile-menu-close" @click="toggleMobileMenu">✕</button>
         <router-link to="/" @click="toggleMobileMenu">首页</router-link>
-        <router-link to="/about" @click="toggleMobileMenu">品牌故事</router-link>
-        <router-link to="/products" @click="toggleMobileMenu">产品中心</router-link>
+        <router-link to="/about" @click="toggleMobileMenu">关于我们</router-link>
         <router-link to="/process" @click="toggleMobileMenu">生产工艺</router-link>
-        <router-link to="/contact" @click="toggleMobileMenu">联系我们</router-link>
+        <router-link to="/products" @click="toggleMobileMenu">产品</router-link>
+        <router-link to="/contact" class="mobile-menu-link-emphasis" @click="toggleMobileMenu">联系我们</router-link>
       </div>
     </transition>
 
@@ -2636,14 +2697,14 @@
           <h4>种茶人</h4>
           <p>专注高端茶叶精深加工25年</p>
           <p>为全球300+经销商提供优质茶叶</p>
-          <p>年产能5000吨，出口30+国家</p>
+          <p>年产能5000吨</p>
         </div>
 
         <div class="footer-section">
           <h4>快速链接</h4>
-          <router-link to="/about">品牌故事</router-link>
-          <router-link to="/products">产品中心</router-link>
+          <router-link to="/about">关于我们</router-link>
           <router-link to="/process">生产工艺</router-link>
+          <router-link to="/products">产品</router-link>
           <router-link to="/contact">联系我们</router-link>
         </div>
 
@@ -2689,10 +2750,7 @@
               <span>精</span><span>于</span><span>工</span><span>艺</span>
             </h2>
             <p class="hero-desc">Premium Tea Processing · Trusted by 300+ Global Partners</p>
-            <div class="hero-ctas">
-              <button class="btn-primary" @click="$router.push('/products')">查看产品目录</button>
-              <button class="btn-secondary" @click="$router.push('/contact')">预约工厂参观</button>
-            </div>
+      
           </div>
           
           <div class="hero-stats">
@@ -2703,10 +2761,6 @@
             <div class="hero-stat">
               <div class="hero-stat-number">300+</div>
               <div class="hero-stat-label">合作经销商</div>
-            </div>
-            <div class="hero-stat">
-              <div class="hero-stat-number">30+</div>
-              <div class="hero-stat-label">出口国家</div>
             </div>
           </div>
         </div>
@@ -2727,37 +2781,6 @@
             <div class="stat-number" data-target="300">0</div>
             <div class="stat-label">合作经销商</div>
           </div>
-          <div class="stat-item">
-            <div class="stat-number" data-target="30">0</div>
-            <div class="stat-label">出口国家</div>
-          </div>
-        </div>
-      </section>
-      
-      <!-- Products Preview -->
-      <section class="section">
-        <h2 class="section-title">精选产品</h2>
-        <div class="products-grid">
-          <div class="product-card" v-for="product in featuredProducts" :key="product.id">
-            <div class="product-image">
-              <svg width="120" height="120" viewBox="0 0 120 120">
-                <circle cx="60" cy="60" r="50" :fill="product.color" opacity="0.3"/>
-                <path d="M60 30 Q50 45 60 60 Q70 45 60 30 M40 45 Q50 52 60 60 M80 45 Q70 52 60 60" 
-                      :stroke="product.color" fill="none" stroke-width="3"/>
-              </svg>
-            </div>
-            <div class="product-info">
-              <div class="product-name">{{ product.name }}</div>
-              <div class="product-name-en">{{ product.nameEn }}</div>
-              <div class="product-tags">
-                <span class="product-tag" v-for="tag in product.tags" :key="tag">{{ tag }}</span>
-              </div>
-              <button class="product-cta" @click="$router.push('/contact')">联系我们</button>
-            </div>
-          </div>
-        </div>
-        <div style="text-align: center; margin-top: 2rem;">
-          <button class="btn-primary" @click="$router.push('/products')">查看全部产品</button>
         </div>
       </section>
       
@@ -2765,18 +2788,12 @@
       <section class="section">
         <div class="cta-banner">
           <h3>支持 OEM 定制 · 最小起订量灵活</h3>
-          <button class="btn-primary" @click="$router.push('/contact')">联系我们</button>
+          <button class="btn-primary cta-contact-btn" @click="$router.push('/contact')">联系我们</button>
         </div>
       </section>
     </div>
   `,
       setup() {
-        const featuredProducts = [
-          { id: 1, name: '明前龙井', nameEn: 'Pre-Qingming Longjing', tags: ['散装', 'OEM可选'], color: '#2d5a3d' },
-          { id: 2, name: '滇红金芽', nameEn: 'Yunnan Golden Bud', tags: ['袋泡', '礼盒'], color: '#c8a44a' },
-          { id: 3, name: '铁观音', nameEn: 'Tieguanyin Oolong', tags: ['散装', 'OEM可选'], color: '#1a3c2a' }
-        ];
-
         const shouldReduceMotion = window.matchMedia('(max-width: 768px), (prefers-reduced-motion: reduce)').matches;
 
         onMounted(() => {
@@ -2794,8 +2811,6 @@
             setupStatsCounter();
           }, 100);
         });
-
-        return { featuredProducts };
       }
     };
 
