@@ -1213,65 +1213,201 @@
     }
 
     /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ PRODUCTS PAGE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-    .filter-tabs {
+    .products-series-section {
+      max-width: 1120px;
+      padding-top: 6.1rem !important;
+    }
+
+    .series-layout {
+      display: grid;
+      grid-template-columns: 220px minmax(0, 760px);
+      gap: 1.45rem;
+      align-items: start;
+      justify-content: start;
+    }
+
+    .series-sidebar {
+      position: sticky;
+      top: 106px;
+      padding-top: 0.12rem;
+      margin-left: -200px;
+    }
+
+    .series-sidebar h3 {
+      font-size: 2.3rem;
+      color: #193a62;
+      margin-bottom: 1.1rem;
+      font-family: 'Noto Serif SC', serif;
+      letter-spacing: 0.01em;
+    }
+
+    .series-nav {
+      list-style: none;
       display: flex;
+      flex-direction: column;
+      gap: 0.14rem;
+      padding: 0;
+    }
+
+    .series-nav button {
+      width: fit-content;
+      border: none;
+      background: transparent;
+      text-align: left;
+      font-size: 1.18rem;
+      color: #5e6770;
+      padding: 0.5rem 0;
+      font-weight: 700;
+      border-bottom: 1px solid transparent;
+      transition: color 0.25s ease, border-color 0.25s ease;
+      cursor: pointer;
+    }
+
+    .series-nav button:hover {
+      color: #1f4d7d;
+    }
+
+    .series-nav button.active {
+      color: #163f70;
+      border-bottom-color: #163f70;
+    }
+
+    .series-content {
+      display: flex;
+      flex-direction: column;
+      gap: 1.15rem;
+      max-width: 820px;
+    }
+
+    .series-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: stretch;
+      border-radius: 10px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(22, 63, 112, 0.12);
+      box-shadow: 0 7px 16px rgba(19, 33, 44, 0.05);
+      height: 235px;
+      min-height: 235px;
+      max-height: 235px;
+    }
+
+    .series-visual {
+      position: relative;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      height: 100%;
+      background: #eef2f5;
+      border-right: 1px solid rgba(26, 60, 42, 0.12);
+    }
+
+    .series-image-frame {
+      width: 100%;
+      height: 100%;
+      min-height: 100%;
+      border-radius: 0;
+      background: #1a1a1a;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
       justify-content: center;
-      gap: 1rem;
-      margin-bottom: 3rem;
+      border: 0;
+    }
+
+    .series-product-image {
+      width: 100%;
+      height: 100%;
+      min-height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .series-image-placeholder {
+      width: 100%;
+      height: 100%;
+      min-height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      color: rgba(255, 255, 255, 0.75);
+      font-size: 0.9rem;
+      letter-spacing: 0.03em;
+      background: linear-gradient(135deg, rgba(16, 36, 24, 0.9), rgba(36, 70, 48, 0.92));
+    }
+
+    .series-copy {
+      padding: 0.95rem 0.9rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 0.45rem;
+      height: 100%;
+    }
+
+    .series-copy>div {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      min-height: 0;
+    }
+
+    .series-copy h4 {
+      font-size: 2rem;
+      color: #13375f;
+      margin-bottom: 0.1rem;
+      letter-spacing: 0;
+      line-height: 1.25;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .series-copy p {
+      color: #55606c;
+      line-height: 1.72;
+      font-size: 0.95rem;
+      margin: 0;
+      font-weight: 500;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      line-clamp: 4;
+      -webkit-box-orient: vertical;
+    }
+
+    .series-level-switch {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 0.45rem;
       flex-wrap: wrap;
     }
 
-    .filter-tab {
-      padding: 0.75rem 1.5rem;
-      background: white;
-      border: 2px solid var(--cream-dark);
-      border-radius: 4px;
-      transition: all 0.3s ease;
-      font-weight: 500;
-      position: relative;
-      overflow: hidden;
+    .series-level-btn {
+      border: 1px solid rgba(22, 63, 112, 0.25);
+      background: rgba(255, 255, 255, 0.88);
+      color: #35506f;
+      border-radius: 999px;
+      padding: 0.22rem 0.62rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      line-height: 1.2;
+      cursor: pointer;
+      transition: all 0.2s ease;
     }
 
-    .filter-tab::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: var(--green-deep);
-      transition: left 0.3s ease;
-      z-index: -1;
+    .series-level-btn:hover {
+      border-color: rgba(22, 63, 112, 0.45);
+      color: #163f70;
     }
 
-    .filter-tab:hover::before {
-      left: 0;
-    }
-
-    .filter-tab:hover {
-      border-color: var(--green-deep);
-      color: white;
-      transform: translateY(-2px);
-    }
-
-    .filter-tab.active {
-      background: var(--green-deep);
-      color: white;
-      border-color: var(--green-deep);
-      transform: scale(1.05);
-    }
-
-    .products-grid-full {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
-    }
-
-    .product-specs {
-      font-size: 0.85rem;
-      color: var(--text-dark);
-      margin-bottom: 1rem;
-      font-weight: 500;
+    .series-level-btn.active {
+      background: #163f70;
+      color: #fff;
+      border-color: #163f70;
     }
 
     .custom-banner {
@@ -1957,6 +2093,56 @@
       .hero-diagonal {
         width: 60%;
       }
+
+      .series-layout {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .series-content {
+        max-width: 100%;
+      }
+
+      .series-sidebar {
+        position: static;
+        margin-left: 0;
+      }
+
+      .series-nav {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 0.6rem;
+      }
+
+      .series-nav button {
+        width: 100%;
+        text-align: center;
+        border: 1px solid rgba(22, 63, 112, 0.18);
+        border-radius: 8px;
+        padding: 0.62rem 0.45rem;
+      }
+
+      .series-nav button.active {
+        background: #163f70;
+        color: #fff;
+        border-color: #163f70;
+      }
+
+      .series-card {
+        grid-template-columns: 1fr;
+        height: 340px;
+        min-height: 340px;
+        max-height: 340px;
+      }
+
+      .series-visual {
+        min-height: 220px;
+      }
+
+      .series-copy {
+        border-left: none;
+        border-top: 1px solid rgba(26, 60, 42, 0.12);
+      }
     }
 
     @media (max-width: 768px) {
@@ -2179,6 +2365,39 @@
         font-size: 0.9rem;
         flex: 1;
         min-width: auto;
+      }
+
+      .products-series-section {
+        padding-top: 7.2rem !important;
+      }
+
+      .series-sidebar h3 {
+        font-size: 1.75rem;
+      }
+
+      .series-nav {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .series-visual {
+        min-height: 180px;
+        max-height: 180px;
+        padding: 0;
+      }
+
+      .series-image-frame,
+      .series-product-image,
+      .series-image-placeholder {
+        min-height: 180px;
+        max-height: 180px;
+      }
+
+      .series-copy {
+        padding: 1rem 0.9rem;
+      }
+
+      .series-copy h4 {
+        font-size: 1.3rem;
       }
 
       /* About - 移动端布局 */
@@ -2534,6 +2753,22 @@
         font-size: 2.5rem;
       }
 
+      .series-sidebar h3 {
+        font-size: 1.55rem;
+      }
+
+      .series-nav {
+        grid-template-columns: 1fr;
+      }
+
+      .series-nav button {
+        text-align: left;
+      }
+
+      .series-copy h4 {
+        font-size: 1.4rem;
+      }
+
       .filter-tabs {
         flex-direction: column;
         width: 100%;
@@ -2749,7 +2984,7 @@
   </div>
 
   <script>
-    const { createApp, ref, onMounted, onUnmounted, watch, nextTick } = Vue;
+    const { createApp, ref, computed, onMounted, onUnmounted, watch, nextTick } = Vue;
     const { createRouter, createWebHashHistory } = VueRouter;
 
     /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ COMPONENT: Home ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
@@ -2951,108 +3186,207 @@
     /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ COMPONENT: Products ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
     const Products = {
       template: `
-    <div class="section" style="padding-top: 8rem;">
-      <h2 class="section-title">产品中心</h2>
-      
-      <div class="filter-tabs">
-        <button 
-          v-for="category in categories" 
-          :key="category"
-          class="filter-tab"
-          :class="{ active: activeCategory === category }"
-          @click="filterProducts(category)"
-        >
-          {{ category }}
-        </button>
-      </div>
-      
-      <div class="products-grid-full" ref="productsGrid">
-        <div class="product-card" v-for="product in filteredProducts" :key="product.id">
-          <div class="product-image">
-            <svg width="120" height="120" viewBox="0 0 120 120">
-              <circle cx="60" cy="60" r="50" :fill="product.color" opacity="0.3"/>
-              <path d="M60 30 Q50 45 60 60 Q70 45 60 30 M40 45 Q50 52 60 60 M80 45 Q70 52 60 60" 
-                    :stroke="product.color" fill="none" stroke-width="3"/>
-            </svg>
-          </div>
-          <div class="product-info">
-            <div class="product-name">{{ product.name }}</div>
-            <div class="product-name-en">{{ product.nameEn }}</div>
-            <div class="product-tags">
-              <span class="product-tag" v-for="tag in product.tags" :key="tag">{{ tag }}</span>
+    <div class="section products-series-section" style="padding-top: 8rem;">
+      <div class="series-layout">
+        <aside class="series-sidebar">
+          <h3>产品系列</h3>
+          <ul class="series-nav">
+            <li v-for="series in seriesCatalog" :key="series.name">
+              <button
+                type="button"
+                :class="{ active: activeCategory === series.name }"
+                @click="switchCategory(series.name)"
+              >
+                {{ series.name }}
+              </button>
+            </li>
+          </ul>
+        </aside>
+
+        <section class="series-content" ref="seriesContent">
+          <article class="series-card" v-for="product in activeSeries.products" :key="activeSeries.name + '-' + product.name">
+            <div class="series-visual" :style="{ background: activeSeries.visual }">
+              <div class="series-image-frame">
+                <!-- IMAGE_SLOT: 后期在数据中填写 product.image 即可替换此处图片 -->
+                <img
+                  v-if="getProductImage(product)"
+                  class="series-product-image"
+                  :src="getProductImage(product)"
+                  :alt="getProductName(product) + '产品图'"
+                  loading="lazy"
+                />
+                <div v-else class="series-image-placeholder">
+                  图片占位，后期可直接替换
+                </div>
+              </div>
             </div>
-            <div class="product-specs">
-              起订量：{{ product.moq }} | 规格：{{ product.spec }}
+
+            <div class="series-copy">
+              <div>
+                <h4>{{ getProductName(product) }}</h4>
+                <p>{{ getProductDescription(product) }}</p>
+                <div v-if="product.levels" class="series-level-switch">
+                  <button
+                    v-for="item in product.levels"
+                    :key="product.name + '-' + item.level"
+                    type="button"
+                    class="series-level-btn"
+                    :class="{ active: product.selectedLevel === item.level }"
+                    @click="selectProductLevel(product, item.level)"
+                  >
+                    {{ item.level }}
+                  </button>
+                </div>
+              </div>
             </div>
-            <button class="product-cta" @click="$router.push('/contact')">联系我们</button>
-          </div>
-        </div>
-      </div>
-      
-      <div class="custom-banner">
-        <h3>支持 OEM/ODM 定制</h3>
-        <p>定制包装设计 · 最小起订量可议 · 快速打样服务</p>
+          </article>
+        </section>
       </div>
     </div>
   `,
       setup() {
-        const activeCategory = ref('全部');
-        const productsGrid = ref(null);
+        const seriesContent = ref(null);
+        const seriesCatalog = ref([
+          {
+            name: '绿茶',
+            description: '鲜爽清香，适用于经典拼配、即饮产品与袋泡茶基底。',
+            visual: 'radial-gradient(circle at 18% 20%, rgba(86, 136, 92, 0.42), rgba(18, 51, 31, 0.95))',
+            products: [
+              // IMAGE_SLOT: 在 image 字段填写图片路径，如 ./image/ganlu.jpg
+              { name: '甘露', description: '鲜爽甘润，适合原叶与袋泡茶应用。', image: 'image\\test.jpg' },
+              { name: '龙毫', description: '条索细秀，香气清高，回甘明显。', image: '' },
+              { name: '炒针', description: '清香利落，汤色明亮，适配拼配方案。', image: '' },
+              { name: '碧螺春', description: '花果香突出，口感鲜活，适配中高端产品。', image: '' },
+              { name: '毛峰', description: '滋味柔和，鲜甜平衡，应用场景广。', image: '' },
+              { name: '香茶', description: '香气稳定，适合调饮和复配。', image: '' },
+              { name: '烘青绿茶-香茗', description: '烘青工艺突出茶香，适配多场景产品。', image: '' },
+              { name: '烘青绿茶-抽芯', description: '口感更净，适配高标准拼配基底。', image: '' }
+            ]
+          },
+          {
+            name: '红茶',
+            description: '醇厚甘润，甜香明显，适配奶茶、调饮及礼盒产品线。',
+            visual: 'radial-gradient(circle at 18% 20%, rgba(174, 86, 68, 0.45), rgba(64, 20, 15, 0.95))',
+            products: [
+              { name: '金骏眉', description: '花果蜜香，茶汤顺滑，适合高端线。', image: '' },
+              { name: '川红', description: '滋味醇厚，香甜稳健，适配大单采购。', image: '' }
+            ]
+          },
+          {
+            name: '白茶',
+            description: '清雅柔和，芽叶等级分明，可用于高端原叶及礼品渠道。',
+            visual: 'radial-gradient(circle at 18% 20%, rgba(175, 183, 173, 0.45), rgba(54, 66, 56, 0.95))',
+            products: [
+              { name: '白毫银针', description: '芽毫显露，汤感细腻，香气清雅。', image: '' },
+              { name: '牡丹', description: '香气清甜，层次丰富，适配礼盒线。', image: '' }
+            ]
+          },
+          {
+            name: '花茶',
+            description: '花香融合茶香，口感层次清晰，适合年轻化风味产品。',
+            visual: 'radial-gradient(circle at 18% 20%, rgba(196, 150, 102, 0.45), rgba(78, 49, 26, 0.95))',
+            products: [
+              { name: '栀子香茗', description: '花香清透，入口柔和，风味稳定。', image: '' },
+              { name: '栀子抽心', description: '花香更纯净，适合轻调饮方向。', image: '' },
+              { name: '栀子毛峰', description: '茶香与花香平衡，适配复合产品。', image: '' },
+              { name: '栀子针王', description: '清香挺拔，回甘利落，适配即饮线。', image: '' }
+            ]
+          },
+          {
+            name: '无硫桂花',
+            description: '香气自然纯净，不熏硫处理，可用于拼配增香及花香单品。',
+            visual: 'radial-gradient(circle at 18% 20%, rgba(214, 171, 78, 0.48), rgba(89, 58, 17, 0.94))',
+            products: [
+              {
+                name: '金桂',
+                selectedLevel: '一级',
+                levels: [
+                  // IMAGE_SLOT: 将 image 替换为对应等级图片路径
+                  { level: '一级', name: '一级金桂', description: '花香浓郁干净，适配高端拼配增香。', image: '' },
+                  { level: '二级', name: '二级金桂', description: '香气饱满平衡，适配常规应用。', image: '' },
+                  { level: '三级', name: '三级金桂', description: '性价比高，适合大批量产线。', image: '' }
+                ]
+              },
+              {
+                name: '丹桂',
+                selectedLevel: '一级',
+                levels: [
+                  // IMAGE_SLOT: 将 image 替换为对应等级图片路径
+                  { level: '一级', name: '一级丹桂', description: '甜香显著，后香持久，适配特色产品。', image: '' },
+                  { level: '二级', name: '二级丹桂', description: '花香柔和，适配复合配方。', image: '' },
+                  { level: '三级', name: '三级丹桂', description: '香气自然，适合基础型需求。', image: '' }
+                ]
+              }
+            ]
+          }
+        ]);
 
-        const categories = ['全部', '绿茶', '红茶', '乌龙茶', '白茶', '普洱', '花草茶'];
+        const activeCategory = ref('绿茶');
 
-        const allProducts = [
-          { id: 1, name: '明前龙井', nameEn: 'Pre-Qingming Longjing', category: '绿茶', tags: ['散装', 'OEM可选'], moq: '50kg', spec: '50g/袋', color: '#2d5a3d' },
-          { id: 2, name: '滇红金芽', nameEn: 'Yunnan Golden Bud', category: '红茶', tags: ['袋泡', '礼盒'], moq: '100kg', spec: '2g/袋', color: '#c8a44a' },
-          { id: 3, name: '铁观音', nameEn: 'Tieguanyin Oolong', category: '乌龙茶', tags: ['散装', 'OEM可选'], moq: '50kg', spec: '100g/袋', color: '#1a3c2a' },
-          { id: 4, name: '白毫银针', nameEn: 'Silver Needle White Tea', category: '白茶', tags: ['散装', '礼盒'], moq: '30kg', spec: '50g/罐', color: '#e8c97a' },
-          { id: 5, name: '古树普洱', nameEn: 'Ancient Tree Puerh', category: '普洱', tags: ['饼茶', 'OEM可选'], moq: '100kg', spec: '357g/饼', color: '#6b6459' },
-          { id: 6, name: '茉莉花茶', nameEn: 'Jasmine Green Tea', category: '花草茶', tags: ['袋泡', '散装'], moq: '50kg', spec: '3g/袋', color: '#2d5a3d' }
-        ];
+        const activeSeries = computed(() => {
+          return seriesCatalog.value.find((series) => series.name === activeCategory.value) || seriesCatalog.value[0];
+        });
 
-        const filteredProducts = ref(allProducts);
+        const getActiveLevelItem = (product) => {
+          if (!product.levels || product.levels.length === 0) return product;
+          return product.levels.find((item) => item.level === product.selectedLevel) || product.levels[0];
+        };
 
-        const filterProducts = (category) => {
-          const grid = productsGrid.value;
+        const getProductImage = (product) => {
+          const activeItem = getActiveLevelItem(product);
+          return activeItem.image || '';
+        };
+
+        const getProductName = (product) => {
+          const activeItem = getActiveLevelItem(product);
+          return activeItem.name || product.name;
+        };
+
+        const getProductDescription = (product) => {
+          const activeItem = getActiveLevelItem(product);
+          return activeItem.description || product.description || '';
+        };
+
+        const selectProductLevel = (product, level) => {
+          if (!product.levels) return;
+          product.selectedLevel = level;
+        };
+
+        const switchCategory = (category) => {
           const shouldReduceMotion = window.matchMedia('(max-width: 768px), (prefers-reduced-motion: reduce)').matches;
 
-          if (!grid || shouldReduceMotion) {
+          if (category === activeCategory.value) return;
+
+          if (shouldReduceMotion || !seriesContent.value) {
             activeCategory.value = category;
-            filteredProducts.value = category === '全部'
-              ? allProducts
-              : allProducts.filter(p => p.category === category);
             return;
           }
 
-          // Fade out animation
-          gsap.to(grid.children, {
+          gsap.to(seriesContent.value, {
             opacity: 0,
-            y: 20,
-            stagger: 0.05,
-            duration: 0.3,
+            y: 12,
+            duration: 0.2,
             onComplete: () => {
               activeCategory.value = category;
-              filteredProducts.value = category === '全部'
-                ? allProducts
-                : allProducts.filter(p => p.category === category);
-
-              // Fade in animation
-              setTimeout(() => {
-                gsap.fromTo(grid.children,
-                  { opacity: 0, y: 20 },
-                  { opacity: 1, y: 0, stagger: 0.05, duration: 0.4, ease: 'power2.out' }
-                );
-              }, 50);
+              gsap.fromTo(
+                seriesContent.value,
+                { opacity: 0, y: 12 },
+                { opacity: 1, y: 0, duration: 0.28, ease: 'power2.out' }
+              );
             }
           });
         };
 
         return {
-          categories,
+          seriesCatalog,
           activeCategory,
-          filteredProducts,
-          filterProducts,
-          productsGrid
+          activeSeries,
+          getProductImage,
+          getProductName,
+          getProductDescription,
+          selectProductLevel,
+          switchCategory,
+          seriesContent
         };
       }
     };
